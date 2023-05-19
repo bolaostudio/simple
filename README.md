@@ -8,5 +8,5 @@ Es ligera, útil y moderna, además de estar en constante desarrollo es una de l
 ### Gracias a:
 - [@lesclaz](https://t.me/lesclaz) por crear [suitetecsa](https://github.com/suitetecsa/)
 - [@roclahy](https://twitter.com/roclahy) por el apoyo incondicional 
-- y a todos los que han aportado su granito de arena para que este proyecto sea posible. ❤️ 
-### Gracias
+- y a todos los que han aportado su granito de arena para que este proyecto sea posible. 
+### Gracias ❤️
