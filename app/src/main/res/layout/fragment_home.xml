@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:focusableInTouchMode="true"
+    android:focusable="true"
+    tools:context=".ui.home.HomeFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+        <LinearLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="80dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="8dp">
+
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_height="55dp"
+                    android:layout_width="match_parent"
+                    app:icon="@drawable/ic_balance_20dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/colorOnSurface"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="5dp"
+                    style="@style/Widget.Material3.Button.ElevatedButton"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1.0"
+                    android:id="@+id/buttomConsultaSaldo"
+                    android:text="@string/title_consulta_saldo" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_height="55dp"
+                    android:layout_width="match_parent"
+                    app:icon="@drawable/ic_bonos_24px"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/colorOnSurface"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="8dp"
+                    style="@style/Widget.Material3.Button.ElevatedButton"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1.0"
+                    android:id="@+id/buttomConsultaBonos"
+                    android:text="@string/title_consulta_bono" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_height="55dp"
+                    android:layout_width="match_parent"
+                    app:icon="@drawable/ic_datos_24px"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/colorOnSurface"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="5dp"
+                    style="@style/Widget.Material3.Button.ElevatedButton"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1.0"
+                    android:id="@+id/buttomConsultaDatos"
+                    android:text="@string/title_consulta_datos" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_height="55dp"
+                    android:layout_width="match_parent"
+                    app:icon="@drawable/ic_pospago_24px"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/colorOnSurface"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="8dp"
+                    style="@style/Widget.Material3.Button.ElevatedButton"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1.0"
+                    android:id="@+id/buttomConsultaPospago"
+                    android:text="@string/title_consulta_pospago" />
+
+            </LinearLayout>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                app:cardElevation="1dp"
+                app:strokeWidth="0dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="20dp">
+
+                <LinearLayout
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:padding="16dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="@string/categoria_recarga" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        app:boxCornerRadiusBottomEnd="30dp"
+                        app:boxCornerRadiusTopStart="30dp"
+                        app:boxStrokeWidth="0dp"
+                        app:boxCornerRadiusTopEnd="30dp"
+                        app:endIconMode="custom"
+                        android:hint="@string/hint_recarga"
+                        app:boxCornerRadiusBottomStart="30dp"
+                        app:boxStrokeWidthFocused="0dp"
+                        app:endIconDrawable="@drawable/ic_scanner_code_qr_24px"
+                        style="@style/Widget.Material3.TextInputLayout.FilledBox"
+                        app:errorEnabled="true"
+                        android:id="@+id/inputRecarga">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:maxLength="16"
+                            android:inputType="numberDecimal"
+                            android:id="@+id/editRecarga" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <Button
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:id="@+id/buttomRecargar"
+                        android:text="@string/buttom_recarga" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:focusableInTouchMode="true"
+                app:cardElevation="1dp"
+                app:strokeWidth="0dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="20dp"
+                android:focusable="true">
+
+                <LinearLayout
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:padding="16dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="@string/categoria_transferir" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        app:boxCornerRadiusBottomEnd="30dp"
+                        app:boxCornerRadiusTopStart="30dp"
+                        app:boxStrokeWidth="0dp"
+                        app:boxCornerRadiusTopEnd="30dp"
+                        app:endIconMode="custom"
+                        android:hint="@string/hint_transfer_numero"
+                        app:boxCornerRadiusBottomStart="30dp"
+                        app:boxStrokeWidthFocused="0dp"
+                        app:endIconDrawable="@drawable/ic_contact_24px"
+                        style="@style/Widget.Material3.TextInputLayout.FilledBox"
+                        app:errorEnabled="true"
+                        android:id="@+id/inputNumero">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:maxLength="8"
+                            android:inputType="phone"
+                            android:id="@+id/editNumero" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <LinearLayout
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            app:boxCornerRadiusBottomEnd="30dp"
+                            app:boxCornerRadiusTopStart="30dp"
+                            app:boxStrokeWidth="0dp"
+                            app:boxCornerRadiusTopEnd="30dp"
+                            android:hint="@string/hint_transfer_clave"
+                            android:layout_margin="3dp"
+                            app:boxCornerRadiusBottomStart="30dp"
+                            app:boxStrokeWidthFocused="0dp"
+                            app:passwordToggleEnabled="true"
+                            style="@style/Widget.Material3.TextInputLayout.FilledBox"
+                            app:errorEnabled="true"
+                            android:layout_weight="1.0"
+                            android:id="@+id/inputClave">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:layout_height="wrap_content"
+                                android:layout_width="match_parent"
+                                android:maxLength="4"
+                                android:inputType="numberPassword"
+                                android:id="@+id/editClave" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_height="wrap_content"
+                            android:layout_width="220dp"
+                            app:boxCornerRadiusBottomEnd="30dp"
+                            app:boxCornerRadiusTopStart="30dp"
+                            app:boxStrokeWidth="0dp"
+                            app:boxCornerRadiusTopEnd="30dp"
+                            android:hint="@string/hint_transfer_monto"
+                            android:layout_margin="3dp"
+                            app:boxCornerRadiusBottomStart="30dp"
+                            app:boxStrokeWidthFocused="0dp"
+                            style="@style/Widget.Material3.TextInputLayout.FilledBox"
+                            app:errorEnabled="true"
+                            android:layout_weight="1.0"
+                            android:id="@+id/inputMonto">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:layout_height="wrap_content"
+                                android:layout_width="match_parent"
+                                android:inputType="numberDecimal"
+                                android:id="@+id/editMonto" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:id="@+id/buttomTransferir"
+                            android:text="@string/buttom_transfer" />
+
+                        <ImageButton
+                            android:layout_height="30dp"
+                            android:layout_width="30dp"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:layout_margin="8dp"
+                            app:tint="?attr/colorOnPrimaryContainer"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            app:srcCompat="@drawable/ic_password_24px"
+                            android:id="@+id/imgPassword" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="3dp"
+                app:cardElevation="1dp"
+                app:strokeWidth="0dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="20dp">
+
+                <LinearLayout
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:padding="16dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="@string/categoria_adelanta" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        app:boxCornerRadiusBottomEnd="30dp"
+                        app:boxCornerRadiusTopStart="30dp"
+                        app:boxStrokeWidth="0dp"
+                        app:boxCornerRadiusTopEnd="30dp"
+                        app:endIconMode="dropdown_menu"
+                        android:hint="@string/hint_adelanta"
+                        app:boxCornerRadiusBottomStart="30dp"
+                        app:boxStrokeWidthFocused="0dp"
+                        style="@style/Widget.Material3.TextInputLayout.FilledBox.ExposedDropdownMenu"
+                        app:errorEnabled="true"
+                        android:id="@+id/inputAdelanta">
+
+                        <AutoCompleteTextView
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            app:simpleItems="@array/adelanta"
+                            android:inputType="none"
+                            android:id="@+id/autocomplete" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <Button
+                        android:id="@+id/buttomAdalanta"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="@string/buttom_adelanta" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

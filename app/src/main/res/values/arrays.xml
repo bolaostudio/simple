@@ -1,0 +1,135 @@
+<resources>
+    <string-array name="sim_options">
+        <item>SIM 1</item>
+        <item>SIM 2</item>
+    </string-array>
+
+    <string-array name="sim_values">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+
+    <string-array name="tema_options">
+        <item>@string/array_tema_default</item>
+        <item>@string/array_tema_light</item>
+        <item>@string/array_tema_dark</item>
+    </string-array>
+
+    <string-array name="tema_values">
+        <item>DEFAULT</item>
+        <item>LIGHT</item>
+        <item>DARK</item>
+    </string-array>
+
+    <string-array name="language_options">
+        <item>@string/title_array_language_es</item>
+        <item>@string/title_array_language_en</item>
+    </string-array>
+
+    <string-array name="language_values">
+        <item>es</item>
+        <item>en</item>
+    </string-array>
+
+    <string-array name="color_options">
+        <item>default</item>
+        <item>green</item>
+        <item>Amarillo</item>
+        <item>Azul</item>
+        <item>carmelita</item>
+    </string-array>
+
+    <integer-array name="color_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </integer-array>
+    
+    <string-array name="adelanta">
+        <item>25.00 CUP</item>
+        <item>50.00 CUP</item>
+    </string-array>
+    
+       <string-array name="pelota">
+        <item>@string/title_posiciones</item>
+        <item>@string/title_resultados</item>
+    </string-array>
+
+
+    <string-array name="periodicos">
+        <item>@string/title_suscribirse</item>
+        <item>@string/title_baja</item>
+    </string-array>
+
+    <string-array name="cambio">
+        <item>EUR - Euro</item>
+        <item>USD - Dólar</item>
+        <item>MXN - Peso Mexicano</item>
+        <item>CAD - Dólar Canadiense</item>
+        <item>GBP - Libra Esterlina</item>
+        <item>JPY - Yen Japones</item>
+        <item>CHF - Franco Suizo</item>
+        <item>DKK - Corona Danesa</item>
+        <item>NOK - Coroba Noruega</item>
+        <item>SEK - Corona Sueka</item>
+    </string-array>
+
+    <string-array name="futbol">
+        <item>BundesLiga</item>
+        <item>Champion</item>
+        <item>Copa del Rey</item>
+        <item>La Liga</item>
+        <item>Liga 1</item>
+        <item>Serie A</item>
+        <item>Premier</item>
+    </string-array>
+
+    <string-array name="horozcopo">
+        <item>Aries</item>
+        <item>Tauro</item>
+        <item>Geminis</item>
+        <item>Cancer</item>
+        <item>Leo</item>
+        <item>Virgo</item>
+        <item>Libra</item>
+        <item>Scorpio</item>
+        <item>Sagitario</item>
+        <item>Capricornio</item>
+        <item>Acuario</item>
+        <item>Piscis</item>
+    </string-array>
+
+    <string-array name="tiempo">
+        <item>VLC - Villa Clara</item>
+        <item>GTM - Guantánamo</item>
+        <item>HLG - Holguin</item>
+        <item>ART - Artemiza</item>
+        <item>GRM - Granma</item>
+        <item>LHA - La Habana</item>
+        <item>MAY - Mayabeque</item>
+        <item>IJU - Isla de la Juventud</item>
+        <item>CMG - Camagüey</item>
+        <item>CFG - Cienfuegos</item>
+        <item>PRL - Pinal del Rio</item>
+        <item>SCU - Santiago de Cuba</item>
+        <item>SSP - Santi Spiritus</item>
+        <item>LTU - Las Tunas</item>
+        <item>MTZ - Matanzas</item>
+        <item>CAV - Ciego de Ávila</item>
+    </string-array>
+
+    <string-array name="apagon">
+        <item>Bloque 1</item>
+        <item>Bloque 2</item>
+        <item>Bloque 3</item>
+        <item>Bloque 4</item>
+    </string-array>
+
+    <string-array name="email">
+        <item>@nauta.com.cu</item>
+        <item>@nauta.co.cu</item>
+    </string-array>
+    
+</resources>

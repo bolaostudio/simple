@@ -1,0 +1,79 @@
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        android:key="general"
+        android:title="@string/preference_category_general"
+        app:iconSpaceReserved="false">
+
+        <SwitchPreferenceCompat
+            android:icon="@drawable/ic_speed_red_24px"
+            android:key="floating"
+            android:widgetLayout="@layout/layout_preference_switch_m3"
+            android:title="@string/preference_title_floating"
+            android:summary="@string/preference_summary_floating"
+            android:defaultValue="false" />
+
+        <SwitchPreferenceCompat
+            android:icon="@drawable/ic_autocomplete_24px"
+            android:key="autocomplete"
+            android:widgetLayout="@layout/layout_preference_switch_m3"
+            android:title="@string/preference_title_autocomplete"
+            android:summary="@string/preference_summary_autocomplete"
+            android:defaultValue="false" />
+
+        <com.nova.simple.preferences.NovaListPreference
+            android:icon="@drawable/ic_language_24px"
+            android:key="language"
+            android:title="@string/preference_title_language"
+            android:entries="@array/language_options"
+            android:entryValues="@array/language_values"
+            android:defaultValue="es"
+            android:dialogTitle="@string/preference_title_language"
+            android:summary="@string/preference_summary_language" />
+
+        <SwitchPreferenceCompat
+            android:icon="@drawable/ic_notification_24px"
+            android:key="notifi"
+            android:widgetLayout="@layout/layout_preference_switch_m3"
+            android:title="@string/preference_title_notification"
+            android:summary="@string/preference_summary_notification"
+            android:defaultValue="false" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="theme"
+        android:title="@string/preference_category_tema"
+        app:iconSpaceReserved="false">
+
+        <com.nova.simple.preferences.NovaListPreference
+            android:icon="@drawable/ic_palette_24px"
+            android:key="tema_preference"
+            android:title="@string/preference_title_tema"
+            android:entries="@array/tema_options"
+            android:entryValues="@array/tema_values"
+            android:defaultValue="DEFAULT"
+            android:dialogTitle="@string/preference_title_tema"
+            android:summary="%s" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="sim"
+        android:title="@string/preference_category_sim"
+        app:iconSpaceReserved="false">
+
+        <com.nova.simple.preferences.NovaListPreference
+            android:icon="@drawable/ic_sim_card_24px"
+            android:key="sim_preference"
+            android:title="@string/preference_sim_title"
+            android:entries="@array/sim_options"
+            android:entryValues="@array/sim_values"
+            android:defaultValue="0"
+            android:dialogTitle="@string/preference_sim_title"
+            android:summary="@string/preference_sim_summary" />
+
+    </PreferenceCategory>
+</PreferenceScreen>

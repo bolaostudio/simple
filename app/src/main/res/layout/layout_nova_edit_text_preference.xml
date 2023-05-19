@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:padding="16dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:background="?attr/selectableItemBackground"
+        android:textAppearance="?attr/textAppearanceTitleLarge"
+        android:padding="10dp"
+        android:textColor="?attr/colorPrimary"
+        android:id="@+id/textTitlePreference"
+        android:textStyle="bold"
+        android:text="Edit Preference" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="?attr/textInputFilledStyle"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:paddingEnd="16dp"
+        android:hint="Preference value"
+        android:paddingStart="16dp"
+        android:id="@+id/inputLayoutPreference">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:inputType="text"
+            android:id="@+id/mEditTextPreference" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:gravity="end"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:id="@+id/buttomCancel"
+            android:text="@string/buttom_cancel" />
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:id="@+id/mButtomPossitivePreference"
+            android:text="@string/positive_buttom" />
+
+    </LinearLayout>
+
+</LinearLayout>

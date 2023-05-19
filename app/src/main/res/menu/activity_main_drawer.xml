@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/navigation_home"
+            android:icon="@drawable/ic_home_filled_24px"
+            android:title="@string/title_home" />
+
+        <item
+            android:id="@+id/navigation_servicios"
+            android:icon="@drawable/ic_servicio_sms_24px"
+            android:title="@string/title_servicios" />
+
+        <item
+            android:id="@+id/navigation_entumovil"
+            android:icon="@drawable/ic_entumovil_24px"
+            android:title="@string/title_entumovil" />
+
+        <item
+            android:id="@+id/navigation_telepuntos"
+            android:icon="@drawable/ic_telepuntos_24px"
+            android:title="@string/title_telepuntos" />
+    </group>
+
+    <item
+        android:title="Soporte">
+
+        <menu>
+            <item
+                android:id="@+id/activity_settings"
+                android:icon="@drawable/ic_settings_24px"
+                android:title="@string/title_settings" />
+
+            <item
+                android:id="@+id/activity_invite"
+                android:icon="@drawable/ic_invite_24px"
+                android:title="@string/title_invite" />
+
+            <item
+                android:id="@+id/activity_about"
+                android:icon="@drawable/ic_about_24px"
+                android:title="@string/title_about" />
+        </menu>
+    </item>
+
+</menu>

@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        android:id="@+id/nested_scroll_view">
+
+        <LinearLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="80dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textAppearance="?textAppearanceTitleMedium"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/portal_nauta_title"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textAppearance="?textAppearanceHeadlineMedium"
+                android:id="@+id/textTiempo"
+                android:layout_gravity="center_horizontal"
+                android:text=""/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textAppearance="?textAppearanceBodySmall"
+                android:id="@+id/textCuenta"
+                android:layout_gravity="center_horizontal"
+                android:text=""/>
+
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="?textAppearanceTitleMedium"
+                    android:text="@string/portal_nauta_saldo"/>
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:textAppearance="?textAppearanceBodySmall"
+                    android:id="@+id/textSaldoCuenta"
+                    android:text=""/>
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="?textAppearanceTitleMedium"
+                    android:text="@string/portal_nauta_tipo"/>
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:textAppearance="?textAppearanceBodySmall"
+                    android:id="@+id/textTypeAccount"
+                    android:text=""/>
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="?textAppearanceTitleMedium"
+                    android:text="@string/portal_nauta_bloqueo"/>
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:textAppearance="?textAppearanceBodySmall"
+                    android:id="@+id/textBloqueoCuenta"
+                    android:text=""/>
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="?textAppearanceTitleMedium"
+                    android:text="@string/portal_nauta_delete"/>
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="?textAppearanceBodySmall"
+                    android:id="@+id/textDeleteCuenta"
+                    android:text=""/>
+
+            </LinearLayout>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_margin="16dp"
+                app:cardElevation="2dp"
+                app:strokeWidth="0dp">
+
+                <LinearLayout
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:padding="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="@string/portal_nauta_recarga"/>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/inputRecargaCuenta"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        app:counterEnabled="true"
+                        app:boxCornerRadiusBottomEnd="30dp"
+                        app:boxCornerRadiusTopStart="30dp"
+                        app:boxStrokeWidth="0dp"
+                        app:boxCornerRadiusTopEnd="30dp"
+                        app:endIconDrawable="@drawable/ic_scanner_code_qr_24px"
+                        app:endIconMode="custom"
+                        android:hint="@string/hint_recarga_cuenta"
+                        app:boxCornerRadiusBottomStart="30dp"
+                        app:boxStrokeWidthFocused="0dp"
+                        style="@style/Widget.Material3.TextInputLayout.FilledBox"
+                        app:errorEnabled="true"
+                        app:counterMaxLength="16">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:inputType="numberDecimal"
+                            android:id="@+id/editTextRecargaCuenta"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <Button
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:id="@+id/buttomRecargar"
+                        android:text="@string/buttom_recargar"/>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_margin="16dp"
+                app:cardElevation="2dp"
+                app:strokeWidth="0dp">
+
+                <LinearLayout
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:padding="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="@string/portal_nauta_transferir"/>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_height="wrap_content"
+                        android:layout_width="150dp"
+                        app:boxCornerRadiusTopEnd="30dp"
+                        android:hint="@string/hint_monto_cuenta"
+                        app:boxCornerRadiusBottomStart="30dp"
+                        app:boxStrokeWidthFocused="0dp"
+                        app:boxCornerRadiusBottomEnd="30dp"
+                        style="@style/Widget.Material3.TextInputLayout.FilledBox"
+                        app:boxCornerRadiusTopStart="30dp"
+                        app:errorEnabled="true"
+                        app:boxStrokeWidth="0dp"
+                        android:id="@+id/inputMonto">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:inputType="numberDecimal"
+                            android:id="@+id/editTextMonto"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        app:boxCornerRadiusTopEnd="30dp"
+                        android:hint="@string/hint_cuenta_destino"
+                        app:boxCornerRadiusBottomStart="30dp"
+                        app:boxStrokeWidthFocused="0dp"
+                        app:boxCornerRadiusBottomEnd="30dp"
+                        style="@style/Widget.Material3.TextInputLayout.FilledBox"
+                        app:boxCornerRadiusTopStart="30dp"
+                        app:errorEnabled="true"
+                        app:boxStrokeWidth="0dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:inputType="textEmailAddress"
+                            android:id="@+id/editTextCuenta"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <Button
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:id="@+id/buttomTransferir"
+                        android:text="@string/buttom_transferir"/>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_margin="16dp"
+                app:cardElevation="2dp"
+                app:strokeWidth="0dp">
+
+                <LinearLayout
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:padding="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="@string/portal_nauta_password"/>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        app:boxCornerRadiusTopEnd="30dp"
+                        android:hint="@string/hint_nueva_password"
+                        app:boxCornerRadiusBottomStart="30dp"
+                        app:boxStrokeWidthFocused="0dp"
+                        app:boxCornerRadiusBottomEnd="30dp"
+                        app:passwordToggleEnabled="true"
+                        style="@style/Widget.Material3.TextInputLayout.FilledBox"
+                        app:boxCornerRadiusTopStart="30dp"
+                        app:errorEnabled="true"
+                        app:boxStrokeWidth="0dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:inputType="textPassword"
+                            android:id="@+id/editTextPassword"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <Button
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:id="@+id/buttomPassword"
+                        android:text="@string/buttom_cambiar_password"/>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

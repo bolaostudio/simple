@@ -1,0 +1,38 @@
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        android:key="perfil"
+        android:title="@string/preference_category_general"
+        app:iconSpaceReserved="false">
+
+        <com.nova.simple.preferences.NovaEditTextPreference
+            android:icon="@drawable/ic_person_40px"
+            android:key="nombre"
+            android:persistent="true"
+            app:useSimpleSummaryProvider="true"
+            android:title="Nombre"/>
+
+        <com.nova.simple.preferences.NovaEditTextPreference
+            android:icon="@drawable/ic_numero_24px"
+            android:key="numero"
+            android:persistent="true"
+            android:summary="@string/subtitle_perfil_numero"
+            android:title="@string/title_perfil_numero"/>
+
+        <com.nova.simple.preferences.NovaEditTextPreference
+            android:icon="@drawable/ic_password_24px"
+            android:key="password"
+            android:persistent="true"
+            android:summary="@string/subtitle_perfil_password"
+            android:title="@string/title_perfil_password"/>
+
+        <com.nova.simple.preferences.NovaEditTextPreference
+            android:icon="@drawable/ic_captive_portal_24px"
+            android:key="email"
+            android:persistent="true"
+            android:summary="@string/subtitle_perfil_email"
+            android:title="@string/title_perfil_email"/>
+    </PreferenceCategory>
+</PreferenceScreen>

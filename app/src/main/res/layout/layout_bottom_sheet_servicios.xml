@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:padding="10dp"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+    android:orientation="vertical"
+    style="@stryle/Widget.Material3.BottomSheet">
+
+    <com.google.android.material.bottomsheet.BottomSheetDragHandleView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/drag_handle" />
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:textAppearance="?textAppearanceHeadlineMedium"
+        android:layout_gravity="center_horizontal"
+        android:text=""
+        android:id="@+id/mTextTitle" />
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_margin="5dp"
+        android:id="@+id/mtextDescription" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        app:boxCornerRadiusBottomEnd="30dp"
+        android:layout_marginTop="10dp"
+        app:boxCornerRadiusTopStart="30dp"
+        app:boxStrokeWidth="0dp"
+        app:boxCornerRadiusTopEnd="30dp"
+        android:hint="@string/hint_imei"
+        app:boxCornerRadiusBottomStart="30dp"
+        app:boxStrokeWidthFocused="0dp"
+        style="?attr/textInputFilledStyle"
+        app:errorEnabled="true"
+        android:id="@+id/input_servicios">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:imeOptions="actionDone"
+            android:singleLine="true"
+            android:maxLength="8"
+            android:maxLines="1"
+            android:ems="10"
+            android:inputType="phone"
+            android:id="@+id/edit_servicios" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_margin="5dp"
+            style="@style/Widget.Material3.Button.TonalButton"
+            android:id="@+id/buttomConsulta"
+            android:text="@string/buttom_consultar_servicio" />
+
+
+    </LinearLayout>
+
+</LinearLayout>

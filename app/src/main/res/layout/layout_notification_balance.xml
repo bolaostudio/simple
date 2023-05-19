@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+     xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     android:layout_height="wrap_content"
+     android:layout_width="match_parent"
+     android:orientation="horizontal">
+
+    <TextView
+         android:layout_height="wrap_content"
+         android:layout_width="match_parent"
+         android:drawablePadding="3dp"
+         android:gravity="center"
+         android:layout_weight="1.0"
+         android:drawableTint="@color/colorOnSurface"
+         android:drawableTop="@drawable/ic_paquetes_20px"
+         android:text="0 MB"
+         android:id="@+id/textNotifPaquete" />
+
+    <TextView
+         android:layout_height="wrap_content"
+         android:layout_width="match_parent"
+         android:drawablePadding="3dp"
+         android:gravity="center"
+         android:layout_weight="1.0"
+         android:drawableTint="@color/colorOnSurface"
+         android:drawableTop="@drawable/ic_lte_20px"
+         android:text="0 MB"
+         android:id="@+id/textNotifLte" />
+
+    <TextView
+         android:layout_height="wrap_content"
+         android:layout_width="match_parent"
+         android:drawablePadding="3dp"
+         android:gravity="center"
+         android:layout_weight="1.0"
+         android:drawableTint="@color/colorOnSurface"
+         android:drawableTop="@drawable/ic_nacional_20px"
+         android:text="0 MB"
+         android:id="@+id/textNotifNacional" />
+
+    <TextView
+         android:layout_height="wrap_content"
+         android:layout_width="match_parent"
+         android:drawablePadding="3dp"
+         android:gravity="center"
+         android:layout_weight="1.0"
+         android:drawableTint="@color/colorOnSurface"
+         android:drawableTop="@drawable/ic_balance_calendario_20px"
+         android:text="0 días"
+         android:id="@+id/textNotifVence" />
+
+</LinearLayout>

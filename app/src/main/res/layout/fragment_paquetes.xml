@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+     xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     android:layout_height="match_parent"
+     android:layout_width="match_parent"
+     android:orientation="vertical">
+
+    <LinearLayout
+         android:layout_height="match_parent"
+         android:layout_width="match_parent"
+         android:orientation="vertical">
+
+        <LinearLayout
+             android:layout_height="wrap_content"
+             android:layout_width="match_parent"
+             android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                 android:layout_height="55dp"
+                 android:layout_width="match_parent"
+                 app:icon="@drawable/ic_llamadas_unfilled_24px"
+                 android:gravity="center_vertical"
+                 android:textColor="@color/colorOnSurface"
+                 android:layout_marginLeft="16dp"
+                 android:layout_marginRight="5dp"
+                 style="@style/Widget.Material3.Button.ElevatedButton"
+                 android:layout_marginTop="16dp"
+                 android:layout_weight="1.0"
+                 android:id="@+id/buttomConsultaMinutos"
+                 android:text="@string/title_minutos"/>
+
+            <com.google.android.material.button.MaterialButton
+                 android:layout_height="55dp"
+                 android:layout_width="match_parent"
+                 app:icon="@drawable/ic_balance_sms_20px"
+                 android:gravity="center_vertical"
+                 android:textColor="@color/colorOnSurface"
+                 android:layout_marginLeft="5dp"
+                 android:layout_marginRight="16dp"
+                 style="@style/Widget.Material3.Button.ElevatedButton"
+                 android:layout_marginTop="16dp"
+                 android:layout_weight="1.0"
+                 android:id="@+id/buttomConsultaMensajes"
+                 android:text="@string/title_mensajes"/>
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+             android:layout_height="match_parent"
+             android:layout_width="match_parent"
+             android:layout_marginBottom="80dp"
+             android:layout_marginLeft="11dp"
+             android:layout_marginRight="11dp"
+             android:id="@+id/recyclerView"/>
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

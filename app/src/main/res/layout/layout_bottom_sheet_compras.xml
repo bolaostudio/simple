@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:padding="10dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:textAppearance="?textAppearanceHeadlineMedium"
+        android:id="@+id/textTitle"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:background="@drawable/text_rounded_background"
+        android:textAppearance="?textAppearanceBodySmall"
+        android:padding="6dp"
+        android:id="@+id/textPrecio"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:drawablePadding="10dp"
+        android:drawableLeft="@drawable/ic_paquetes_20px"
+        android:textAppearance="?textAppearanceBodyMedium"
+        android:padding="5dp"
+        android:drawableTint="@color/colorPrimary"
+        android:id="@+id/textPaquete" />
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:drawablePadding="10dp"
+        android:drawableLeft="@drawable/ic_lte_20px"
+        android:textAppearance="?textAppearanceBodyMedium"
+        android:padding="5dp"
+        android:drawableTint="@color/colorPrimary"
+        android:id="@+id/textLte" />
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:drawablePadding="10dp"
+        android:drawableLeft="@drawable/ic_nacional_20px"
+        android:textAppearance="?textAppearanceBodyMedium"
+        android:padding="5dp"
+        android:drawableTint="@color/colorPrimary"
+        android:id="@+id/textNacional" />
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:drawablePadding="10dp"
+        android:drawableLeft="@drawable/ic_balance_minutos_20px"
+        android:textAppearance="?textAppearanceBodyMedium"
+        android:padding="5dp"
+        android:drawableTint="@color/colorPrimary"
+        android:id="@+id/textVoz" />
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:drawablePadding="10dp"
+        android:drawableLeft="@drawable/ic_balance_sms_20px"
+        android:textAppearance="?textAppearanceBodyMedium"
+        android:padding="5dp"
+        android:drawableTint="@color/colorPrimary"
+        android:id="@+id/textSms" />
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:drawablePadding="10dp"
+        android:drawableLeft="@drawable/ic_balance_calendario_20px"
+        android:textAppearance="?textAppearanceBodyMedium"
+        android:padding="5dp"
+        android:drawableTint="@color/colorPrimary"
+        android:id="@+id/textVemcimiento" />
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:gravity="right"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_margin="4dp"
+            style="@style/Widget.Material3.Button.TextButton.Icon"
+            android:id="@+id/buttomCancel"
+            android:text="@string/buttom_cancel" />
+
+        <Button
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_margin="4dp"
+            style="@style/Widget.Material3.Button.TextButton.Icon"
+            android:id="@+id/buttomBuy"
+            android:text="@string/buttom_buy" />
+
+    </LinearLayout>
+
+</LinearLayout>

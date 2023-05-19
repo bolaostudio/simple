@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+     xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     xmlns:tools="http://schemas.android.com/tools"
+     android:layout_height="match_parent"
+     android:layout_width="match_parent"
+     android:background="@drawable/app_widget_background"
+     android:gravity="center"
+     android:orientation="horizontal"
+     style="@style/Widget.MyApplication.AppWidget.Container"
+     android:theme="@style/Theme.Application.AppWidgetContainer">
+
+    <LinearLayout
+         android:layout_height="40dp"
+         android:layout_width="0dp"
+         android:background="@drawable/background_text_widget"
+         android:gravity="center"
+         android:clickable="true"
+         android:layout_margin="4dp"
+         android:layout_weight="1"
+         android:id="@+id/configurarApn">
+
+        <TextView
+             android:layout_height="32dp"
+             android:layout_width="match_parent"
+             android:gravity="center"
+             android:padding="5dp"
+             android:textSize="12sp"
+             android:text="@string/apn" />
+
+    </LinearLayout>
+
+    <LinearLayout
+         android:layout_height="40dp"
+         android:layout_width="40dp"
+         android:gravity="center"
+         android:layout_margin="4dp">
+
+        <ImageView
+             android:layout_height="match_parent"
+             android:layout_width="0dp"
+             android:src="@drawable/ic_saldo_24px"
+             android:background="@drawable/backround_buttom_widget"
+             android:clickable="true"
+             android:padding="5dp"
+             app:tint="@color/colorOnSurface"
+             android:layout_weight="1"
+             android:id="@+id/consultaSaldo" />
+
+    </LinearLayout>
+
+    <LinearLayout
+         android:layout_height="40dp"
+         android:layout_width="40dp"
+         android:gravity="center"
+         android:layout_margin="4dp">
+
+        <ImageView
+             android:layout_height="match_parent"
+             android:layout_width="0dp"
+             android:src="@drawable/ic_bonos_24px"
+             android:background="@drawable/backround_buttom_widget"
+             android:clickable="true"
+             android:padding="5dp"
+             app:tint="@color/colorOnSurface"
+             android:layout_weight="1"
+             android:id="@+id/consultaBonos" />
+
+    </LinearLayout>
+
+    <LinearLayout
+         android:layout_height="40dp"
+         android:layout_width="40dp"
+         android:gravity="center"
+         android:layout_margin="4dp">
+
+        <ImageView
+             android:layout_height="match_parent"
+             android:layout_width="0dp"
+             android:src="@drawable/ic_datos_24px"
+             android:background="@drawable/backround_buttom_widget"
+             android:clickable="true"
+             android:padding="5dp"
+             app:tint="@color/colorOnSurface"
+             android:layout_weight="1"
+             android:id="@+id/consultaDatos" />
+
+    </LinearLayout>
+
+    <LinearLayout
+         android:layout_height="40dp"
+         android:layout_width="40dp"
+         android:gravity="center"
+         android:layout_margin="4dp">
+
+        <ImageView
+             android:layout_height="match_parent"
+             android:layout_width="0dp"
+             android:src="@drawable/ic_adelanta_24px"
+             android:background="@drawable/backround_buttom_widget"
+             android:clickable="true"
+             android:padding="5dp"
+             app:tint="@color/colorOnSurface"
+             android:layout_weight="1"
+             android:id="@+id/consultaAdelanta" />
+
+    </LinearLayout>
+
+</LinearLayout>

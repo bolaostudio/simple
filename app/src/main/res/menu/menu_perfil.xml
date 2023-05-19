@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/delete"
+        app:showAsAction="always"
+        android:title="@string/title_menu_perfil_delete"
+        android:icon="@drawable/ic_delete_24px"/>
+
+    <item
+        android:id="@+id/qr"
+        app:showAsAction="always"
+        android:title="@string/title_menu_perfil_qr"
+        android:icon="@drawable/ic_qr_code_24px"/>
+
+</menu>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        android:id="@+id/nested_scroll_view">
+
+        <LinearLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:orientation="vertical">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_margin="16dp"
+                app:cardElevation="2dp"
+                app:strokeWidth="0dp">
+
+                <LinearLayout
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:padding="10dp"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_height="45dp"
+                        android:layout_width="45dp"
+                        android:src="@drawable/ic_captive_portal_24px"
+                        android:layout_margin="6dp"
+                        android:layout_gravity="center_horizontal"/>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        app:boxCornerRadiusTopEnd="30dp"
+                        app:endIconMode="none"
+                        android:hint="@string/hint_usuario"
+                        app:boxCornerRadiusBottomStart="30dp"
+                        app:boxStrokeWidthFocused="0dp"
+                        app:boxCornerRadiusBottomEnd="30dp"
+                        style="@style/Widget.Material3.TextInputLayout.FilledBox.ExposedDropdownMenu"
+                        app:boxCornerRadiusTopStart="30dp"
+                        app:errorEnabled="true"
+                        app:boxStrokeWidth="0dp">
+
+                        <AutoCompleteTextView
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:inputType="textEmailAddress"
+                            android:id="@+id/autoCompleteUsuario"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        app:boxCornerRadiusTopEnd="30dp"
+                        android:hint="@string/hint_user_password"
+                        app:boxCornerRadiusBottomStart="30dp"
+                        app:boxStrokeWidthFocused="0dp"
+                        app:boxCornerRadiusBottomEnd="30dp"
+                        app:passwordToggleEnabled="true"
+                        style="@style/Widget.Material3.TextInputLayout.FilledBox"
+                        app:boxCornerRadiusTopStart="30dp"
+                        app:errorEnabled="true"
+                        app:boxStrokeWidth="0dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:id="@+id/editTextPassword"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <LinearLayout
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            app:boxCornerRadiusBottomEnd="30dp"
+                            app:boxCornerRadiusTopStart="30dp"
+                            app:boxStrokeWidth="0dp"
+                            app:boxCornerRadiusTopEnd="30dp"
+                            app:endIconMode="custom"
+                            android:hint="@string/hint_captcha"
+                            app:boxCornerRadiusBottomStart="30dp"
+                            app:boxStrokeWidthFocused="0dp"
+                            app:endIconDrawable="@drawable/ic_sync_24dp"
+                            style="@style/Widget.Material3.TextInputLayout.FilledBox"
+                            app:errorEnabled="true"
+                            android:layout_weight="1.0"
+                            android:id="@+id/inputCaptcha">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:layout_height="wrap_content"
+                                android:layout_width="match_parent"
+                                android:id="@+id/editTextCaptcha"/>
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <ImageView
+                            android:layout_height="60dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginBottom="10dp"
+                            android:scaleType="fitCenter"
+                            android:layout_marginLeft="5dp"
+                            android:layout_weight="1.0"
+                            android:id="@+id/imageCaptcha"/>
+
+                    </LinearLayout>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:id="@+id/buttomConnect"
+                        android:layout_gravity="center_horizontal"
+                        android:text="@string/buttom_access_portal_nauta"/>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

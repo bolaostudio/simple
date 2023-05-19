@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.nova.simple.ui.home.HomeFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/nav_settings"
+            app:destination="@id/activity_settings" />
+
+        <action
+            android:id="@+id/nav_about"
+            app:destination="@id/activity_about" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_balance"
+        android:name="com.nova.simple.ui.balances.BalanceFragment"
+        android:label="@string/title_balance"
+        tools:layout="@layout/fragment_balance">
+        <action
+            android:id="@+id/nav_settings"
+            app:destination="@id/activity_settings" />
+
+        <action
+            android:id="@+id/nav_about"
+            app:destination="@id/activity_about" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_compras"
+        android:name="com.nova.simple.ui.compras.ComprasFragment"
+        android:label="@string/title_buy"
+        tools:layout="@layout/fragment_compras">
+        <action
+            android:id="@+id/nav_settings"
+            app:destination="@id/activity_settings" />
+
+        <action
+            android:id="@+id/nav_about"
+            app:destination="@id/activity_about" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_llamadas"
+        android:name="com.nova.simple.ui.llamadas.LlamadasFragment"
+        android:label="@string/title_llamadas"
+        tools:layout="@layout/fragment_llamadas">
+
+        <action
+            android:id="@+id/nav_settings"
+            app:destination="@id/activity_settings" />
+
+        <action
+            android:id="@+id/nav_about"
+            app:destination="@id/activity_about" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_nauta"
+        android:name="com.nova.simple.ui.nauta.NautaFragment"
+        android:label="@string/title_nauta"
+        tools:layout="@layout/fragment_nauta">
+        <action
+            android:id="@+id/nav_settings"
+            app:destination="@id/activity_settings" />
+
+        <action
+            android:id="@+id/nav_about"
+            app:destination="@id/activity_about" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_info_user"
+        android:name="com.nova.simple.ui.nauta.PortalUsuarioInfo"
+        android:label="@string/title_nauta"
+        tools:layout="@layout/layout_portal_usuario_info">
+
+        <action
+            android:id="@+id/nav_settings"
+            app:destination="@id/activity_settings" />
+
+        <action
+            android:id="@+id/nav_about"
+            app:destination="@id/activity_about" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/navigation_servicios"
+        android:name="com.nova.simple.ui.sms.ServiciosFragment"
+        android:label="@string/title_servicios"
+        tools:layout="@layout/fragment_amigo" />
+
+    <fragment
+        android:id="@+id/nav_entumovil"
+        android:name="com.nova.simple.ui.sms.EnTuMovilFragment"
+        android:label="@string/title_entumovil"
+        tools:layout="@layout/fragment_amigo" />
+
+    <activity
+        android:id="@+id/activity_settings"
+        android:name="com.nova.simple.activity.SettingsActivity"
+        android:label="Configuración" />
+
+    <activity
+        android:id="@+id/activity_about"
+        android:name="com.nova.simple.activity.AboutActivity"
+        android:label="@string/title_about" />
+
+</navigation>

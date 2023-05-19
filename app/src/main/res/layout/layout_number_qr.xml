@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent">
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:padding="10dp"
+        android:orientation="vertical"
+        android:id="@+id/standard_bottom_sheet">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textAppearance="?textAppearanceTitleMedium"
+            android:layout_margin="8dp"
+            android:text="@string/title_qr" />
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:background="@drawable/rounded_corner_image_view"
+            android:padding="10dp"
+            android:layout_gravity="center_horizontal">
+
+            <ImageView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/mCodeQr" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textAppearance="?textAppearanceBodySmall"
+            android:layout_margin="8dp"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/description_code_qr" />
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            app:icon="@drawable/ic_invite_24px"
+            android:layout_margin="10dp"
+            style="@style/Widget.Material3.Button.TextButton.Icon"
+            android:id="@+id/mButtomShareQr"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/buttom_share_qr_code" />
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
