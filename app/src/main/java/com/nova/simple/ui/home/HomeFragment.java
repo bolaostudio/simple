@@ -320,7 +320,7 @@ public class HomeFragment extends Fragment {
                         .setTitle(getString(R.string.title_cambio_password))
                         .setView(dialogBinding.getRoot())
                         .setPositiveButton(
-                                getString(android.R.string.ok),
+                                getString(R.string.buttom_cambiar_password),
                                 new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
@@ -355,6 +355,7 @@ public class HomeFragment extends Fragment {
                                         }
                                     }
                                 })
+                        .setNegativeButton(getString(R.string.buttom_cancel), null)
                         .create();
         alertDialog.show();
     }

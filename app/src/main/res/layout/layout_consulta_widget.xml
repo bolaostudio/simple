@@ -43,7 +43,7 @@
              android:src="@drawable/ic_saldo_24px"
              android:background="@drawable/backround_buttom_widget"
              android:clickable="true"
-             android:padding="5dp"
+             android:padding="7dp"
              app:tint="@color/colorOnSurface"
              android:layout_weight="1"
              android:id="@+id/consultaSaldo" />
@@ -62,7 +62,7 @@
              android:src="@drawable/ic_bonos_24px"
              android:background="@drawable/backround_buttom_widget"
              android:clickable="true"
-             android:padding="5dp"
+             android:padding="7dp"
              app:tint="@color/colorOnSurface"
              android:layout_weight="1"
              android:id="@+id/consultaBonos" />
@@ -81,7 +81,7 @@
              android:src="@drawable/ic_datos_24px"
              android:background="@drawable/backround_buttom_widget"
              android:clickable="true"
-             android:padding="5dp"
+             android:padding="7dp"
              app:tint="@color/colorOnSurface"
              android:layout_weight="1"
              android:id="@+id/consultaDatos" />
@@ -100,7 +100,7 @@
              android:src="@drawable/ic_adelanta_24px"
              android:background="@drawable/backround_buttom_widget"
              android:clickable="true"
-             android:padding="5dp"
+             android:padding="7dp"
              app:tint="@color/colorOnSurface"
              android:layout_weight="1"
              android:id="@+id/consultaAdelanta" />

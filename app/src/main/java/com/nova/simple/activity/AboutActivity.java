@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 
+import android.view.Menu;
 import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -120,5 +121,18 @@ public class AboutActivity extends AppCompatActivity {
                         getString(R.string.about_name3), getString(R.string.about_desc_name3)));
         item.add(
                 new AboutView(getString(R.string.about_beta), getString(R.string.about_desc_beta)));
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu arg0) {
+        onBackPressed();
+        return super.onCreateOptionsMenu(arg0);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(this, MainActivity.class));
+        finish();
     }
 }

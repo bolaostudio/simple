@@ -13,6 +13,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.widget.Toast;
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
@@ -220,5 +221,18 @@ public class SettingsActivity extends AppCompatActivity {
             Objects.requireNonNull(getPreferenceScreen().getSharedPreferences())
                     .unregisterOnSharedPreferenceChangeListener(this);
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu arg0) {
+        onBackPressed();
+        return super.onCreateOptionsMenu(arg0);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(this, MainActivity.class));
+        finish();
     }
 }

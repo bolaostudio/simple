@@ -39,6 +39,7 @@ public class BalanceFragment extends Fragment {
 
     private LayoutProgressDialogBinding dialogProgress;
     private AlertDialog dialog;
+    SharedPreferences sp_sim;
 
     @Override
     public View onCreateView(
@@ -46,7 +47,7 @@ public class BalanceFragment extends Fragment {
         binding = FragmentBalanceBinding.inflate(inflater, container, false);
 
         // SharedPreference select sim
-        SharedPreferences sp_sim = PreferenceManager.getDefaultSharedPreferences(getContext());
+        sp_sim = PreferenceManager.getDefaultSharedPreferences(getContext());
         String simSlot = sp_sim.getString("sim_preference", "0");
         editor = sp_sim.edit();
 
@@ -514,5 +515,23 @@ public class BalanceFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        String dias = sp_sim.getString("venceDat", "0 días").replace(" días", "");
+        int remainingDays = Integer.parseInt(dias);
+        Calendar calendar = Calendar.getInstance();
+        Date currentDate = calendar.getTime();
+        // calcular la fecha de caducidad
+        calendar.add(Calendar.DAY_OF_MONTH, remainingDays);
+        Date expirationDay = calendar.getTime();
+        // calcular la cantidad de dias restantes
+        long daysRemaining =
+                (expirationDay.getTime() - currentDate.getTime()) / (1000 * 60 * 60 * 24);
+        // calcular el porcentaje
+        int porcentage = (int) ((daysRemaining / (float) totalDias) * 100);
+        binding.progressPaquete.setProgress(porcentage);
     }
 }
