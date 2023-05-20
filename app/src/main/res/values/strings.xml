@@ -7,7 +7,7 @@
     <string name="title_nauta">Nauta</string>
     <string name="title_perfil">Mi Perfil</string>
     <string name="title_servicios">Servicios SMS</string>
-    <string name="title_entumovil">EnTuMóvil</string>
+    <string name="title_entumovil">entuMóvil</string>
     <string name="title_telepuntos">Telepuntos</string>
     <string name="title_settings">Configuración</string>
     <string name="title_about">Acerca de</string>
@@ -67,7 +67,7 @@
     <string name="title_lte_a">1 GB</string>
     <string name="title_lte_b">2.5 GB</string>
     <string name="title_lte_c">16 GB</string>
-    <string name="subtitle_mensajeria">Mensajeria</string>
+    <string name="subtitle_mensajeria">Mensajería</string>
     <string name="subtitle_diaria">Diaria</string>
     <string name="title_mensajeria">600 MB</string>
     <string name="title_diaria">200 MB</string>
@@ -282,7 +282,7 @@
     <string name="title_atencion_cliente">Atención al Cliente</string>
     <string name="title_nauta_hogar">Nauta Hogar</string>
     <string name="title_reporte_tff">Reporte TFF</string>
-    <string name="title_electric">Emp. Elécteica</string>
+    <string name="title_electric">Emp. Eléctrica</string>
     <string name="title_quejas">Quejas y reclamos TFM</string>
     <string name="categoria_emergencia">Emergencia</string>
     <string name="title_antidroga">Antidrogas</string>

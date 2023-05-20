@@ -60,7 +60,6 @@ public class LoginFragment extends Fragment {
         // import Api nautaclient to Application
         NovaApplication app = (NovaApplication) getActivity().getApplicationContext();
         client = app.getNautaClient();
-        executor = Executors.newSingleThreadExecutor();
 
         // cargar tipo de correo
         final String[] email = getResources().getStringArray(R.array.email);
@@ -93,6 +92,7 @@ public class LoginFragment extends Fragment {
                 view -> {
                     String usuario = binding.autoCompleteUsuario.getText().toString().trim();
                     String password = binding.editTextPassword.getText().toString().trim();
+                    executor = Executors.newSingleThreadExecutor();
                     executor.execute(() -> connect(usuario, password));
                 });
 
@@ -103,11 +103,9 @@ public class LoginFragment extends Fragment {
         try {
             client.setCredentials(user, password);
             client.connect();
-            // mostrar bottom sheet con info de conexión
-            bottom_sheet_connection();
         } catch (Exception e) {
             e.printStackTrace();
-            String errorMessage = e.getMessage();
+            errorMessage = e.getMessage();
             getActivity()
                     .runOnUiThread(
                             () ->

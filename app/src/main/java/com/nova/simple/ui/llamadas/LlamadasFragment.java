@@ -73,51 +73,56 @@ public class LlamadasFragment extends Fragment {
                                     case 1:
                                         pickContactPrivado.launch(null);
                                         break;
-                                        // utiles
+
                                     case 2:
+                                        // utiles
+                                        break;
+                                    case 3:
                                         SIMDialer.call(
                                                 getActivity(),
                                                 "52642266",
                                                 Integer.parseInt(simslot));
                                         break;
-                                    case 3:
+                                    case 4:
                                         SIMDialer.call(
                                                 getActivity(),
                                                 "80043434",
                                                 Integer.parseInt(simslot));
                                         break;
-                                    case 4:
-                                        SIMDialer.call(
-                                                getActivity(), "114", Integer.parseInt(simslot));
-                                        break;
                                     case 5:
                                         SIMDialer.call(
-                                                getActivity(), "18888", Integer.parseInt(simslot));
+                                                getActivity(), "114", Integer.parseInt(simslot));
+
                                         break;
                                     case 6:
                                         SIMDialer.call(
-                                                getActivity(), "118", Integer.parseInt(simslot));
+                                                getActivity(), "18888", Integer.parseInt(simslot));
                                         break;
                                     case 7:
-                                        // emergencia
+                                        SIMDialer.call(
+                                                getActivity(), "118", Integer.parseInt(simslot));
                                         break;
                                     case 8:
-                                        SIMDialer.call(
-                                                getActivity(), "103", Integer.parseInt(simslot));
+                                        // emergencia
                                         break;
                                     case 9:
                                         SIMDialer.call(
-                                                getActivity(), "104", Integer.parseInt(simslot));
+                                                getActivity(), "103", Integer.parseInt(simslot));
+
                                         break;
                                     case 10:
                                         SIMDialer.call(
-                                                getActivity(), "105", Integer.parseInt(simslot));
+                                                getActivity(), "104", Integer.parseInt(simslot));
                                         break;
                                     case 11:
                                         SIMDialer.call(
-                                                getActivity(), "106", Integer.parseInt(simslot));
+                                                getActivity(), "105", Integer.parseInt(simslot));
                                         break;
                                     case 12:
+                                        SIMDialer.call(
+                                                getActivity(), "106", Integer.parseInt(simslot));
+                                        break;
+                                    case 13:
                                         SIMDialer.call(
                                                 getActivity(), "107", Integer.parseInt(simslot));
                                         break;

@@ -66,14 +66,14 @@
     <string-array name="cambio">
         <item>EUR - Euro</item>
         <item>USD - Dólar</item>
-        <item>MXN - Peso Mexicano</item>
-        <item>CAD - Dólar Canadiense</item>
-        <item>GBP - Libra Esterlina</item>
-        <item>JPY - Yen Japones</item>
-        <item>CHF - Franco Suizo</item>
-        <item>DKK - Corona Danesa</item>
-        <item>NOK - Coroba Noruega</item>
-        <item>SEK - Corona Sueka</item>
+        <item>MXN - Peso mexicano</item>
+        <item>CAD - Dólar canadiense</item>
+        <item>GBP - Libra esterlina</item>
+        <item>JPY - Yen japonés</item>
+        <item>CHF - Franco suizo</item>
+        <item>DKK - Corona danesa</item>
+        <item>NOK - Corona noruega</item>
+        <item>SEK - Corona sueca</item>
     </string-array>
 
     <string-array name="futbol">
@@ -89,12 +89,12 @@
     <string-array name="horozcopo">
         <item>Aries</item>
         <item>Tauro</item>
-        <item>Geminis</item>
-        <item>Cancer</item>
+        <item>Géminis</item>
+        <item>Cáncer</item>
         <item>Leo</item>
         <item>Virgo</item>
         <item>Libra</item>
-        <item>Scorpio</item>
+        <item>Escorpio</item>
         <item>Sagitario</item>
         <item>Capricornio</item>
         <item>Acuario</item>

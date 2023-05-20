@@ -549,7 +549,7 @@ public class EnTuMovilFragment extends Fragment {
         // info
         custom.mTextTitle.setText(getString(R.string.title_embajada));
         custom.mtextDescription.setText(
-                "Información de la embajda en Cuba, dirección, horarios, etc. Los paises con <<ñ>> se escriben con <<nn>>. Ejemplo: España > Espanna");
+                "Información de la embajada en Cuba, dirección, horarios, etc. Los países con <<ñ>> se escriben con <<nn>>. Ejemplo: España > Espanna");
         custom.inputServicios.setHint("País");
         custom.buttomConsulta.setOnClickListener(
                 new View.OnClickListener() {
