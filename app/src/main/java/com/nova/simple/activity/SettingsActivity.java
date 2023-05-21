@@ -222,17 +222,4 @@ public class SettingsActivity extends AppCompatActivity {
                     .unregisterOnSharedPreferenceChangeListener(this);
         }
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu arg0) {
-        onBackPressed();
-        return super.onCreateOptionsMenu(arg0);
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        startActivity(new Intent(this, MainActivity.class));
-        finish();
-    }
 }

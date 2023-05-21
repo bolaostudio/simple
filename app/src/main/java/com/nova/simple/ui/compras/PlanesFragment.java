@@ -113,6 +113,12 @@ public class PlanesFragment extends Fragment {
         // tarifa por consumo
         SharedPreferences sp_tarifa =
                 getActivity().getSharedPreferences("tarifa", Context.MODE_PRIVATE);
+        if (!sp_tarifa.contains("isChecked")) {
+            SharedPreferences.Editor editor = sp_tarifa.edit();
+            editor.putInt("isChecked", -1);
+            editor.apply();
+        }
+
         int selectedButtom = sp_tarifa.getInt("isChecked", -1);
         if (selectedButtom != -1) {
             binding.toggleGroup.check(selectedButtom);

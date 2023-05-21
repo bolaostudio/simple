@@ -122,17 +122,4 @@ public class AboutActivity extends AppCompatActivity {
         item.add(
                 new AboutView(getString(R.string.about_beta), getString(R.string.about_desc_beta)));
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu arg0) {
-        onBackPressed();
-        return super.onCreateOptionsMenu(arg0);
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        startActivity(new Intent(this, MainActivity.class));
-        finish();
-    }
 }
