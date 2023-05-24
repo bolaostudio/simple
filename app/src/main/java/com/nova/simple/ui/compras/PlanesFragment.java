@@ -118,8 +118,14 @@ public class PlanesFragment extends Fragment {
             editor.putInt("isChecked", -1);
             editor.apply();
         }
+        
+        int selectedButtom = -1;
+        try {
+            selectedButtom = sp_tarifa.getInt("isChecked", -1);
+        } catch (ClassCastException e) {
+            e.printStackTrace();
+        }
 
-        int selectedButtom = sp_tarifa.getInt("isChecked", -1);
         if (selectedButtom != -1) {
             binding.toggleGroup.check(selectedButtom);
         }

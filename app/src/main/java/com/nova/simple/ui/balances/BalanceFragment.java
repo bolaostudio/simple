@@ -104,7 +104,11 @@ public class BalanceFragment extends Fragment {
 
         // progress bar total dias en paquetes
         String day = sp_sim.getString("venceDat", "0 días").replace(" días", "");
-        updateProgressBar(day);
+        try {
+            updateProgressBar(day);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         // Agregar un listener para detectar los cambios en "venceDat"
         sp_sim.registerOnSharedPreferenceChangeListener(
@@ -116,7 +120,11 @@ public class BalanceFragment extends Fragment {
                             // Obtener el nuevo valor de "venceDat"
                             String day =
                                     sp_sim.getString("venceDat", "0 días").replace(" días", "");
-                            updateProgressBar(day);
+                            try {
+                                updateProgressBar(day);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
                         }
                     }
                 });
@@ -521,17 +529,21 @@ public class BalanceFragment extends Fragment {
     public void onResume() {
         super.onResume();
         String dias = sp_sim.getString("venceDat", "0 días").replace(" días", "");
-        int remainingDays = Integer.parseInt(dias);
-        Calendar calendar = Calendar.getInstance();
-        Date currentDate = calendar.getTime();
-        // calcular la fecha de caducidad
-        calendar.add(Calendar.DAY_OF_MONTH, remainingDays);
-        Date expirationDay = calendar.getTime();
-        // calcular la cantidad de dias restantes
-        long daysRemaining =
-                (expirationDay.getTime() - currentDate.getTime()) / (1000 * 60 * 60 * 24);
-        // calcular el porcentaje
-        int porcentage = (int) ((daysRemaining / (float) totalDias) * 100);
-        binding.progressPaquete.setProgress(porcentage);
+        try {
+            int remainingDays = Integer.parseInt(dias);
+            Calendar calendar = Calendar.getInstance();
+            Date currentDate = calendar.getTime();
+            // calcular la fecha de caducidad
+            calendar.add(Calendar.DAY_OF_MONTH, remainingDays);
+            Date expirationDay = calendar.getTime();
+            // calcular la cantidad de dias restantes
+            long daysRemaining =
+                    (expirationDay.getTime() - currentDate.getTime()) / (1000 * 60 * 60 * 24);
+            // calcular el porcentaje
+            int porcentage = (int) ((daysRemaining / (float) totalDias) * 100);
+            binding.progressPaquete.setProgress(porcentage);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

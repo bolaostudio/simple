@@ -13,6 +13,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.preference.PreferenceManager;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.elevation.SurfaceColors;
@@ -37,6 +39,7 @@ public class LoginFragment extends Fragment {
     private String errorMessage;
     private NautaClient client;
     Executor executor;
+    private NavController navigate;
 
     @Override
     public View onCreateView(
@@ -56,6 +59,9 @@ public class LoginFragment extends Fragment {
         } else {
             binding.autoCompleteUsuario.getText().clear();
         }
+
+        //
+        navigate = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_main);
 
         // import Api nautaclient to Application
         NovaApplication app = (NovaApplication) getActivity().getApplicationContext();
@@ -103,6 +109,13 @@ public class LoginFragment extends Fragment {
         try {
             client.setCredentials(user, password);
             client.connect();
+
+            // TODO: Cargar información cuando hace login
+            getActivity()
+                    .runOnUiThread(
+                            () -> {
+                                navigate.navigate(R.id.nav_nauta_conectado);
+                            });
         } catch (Exception e) {
             e.printStackTrace();
             errorMessage = e.getMessage();
@@ -112,24 +125,6 @@ public class LoginFragment extends Fragment {
                                     Toast.makeText(getActivity(), errorMessage, Toast.LENGTH_LONG)
                                             .show());
         }
-    }
-
-    private void bottom_sheet_connection() {
-        BottomSheetDialog dialog = new BottomSheetDialog(getActivity());
-        dialog.getWindow().setNavigationBarColor(SurfaceColors.SURFACE_1.getColor(getActivity()));
-        LayoutBottomSheetConnectedBinding layout =
-                LayoutBottomSheetConnectedBinding.inflate(LayoutInflater.from(getActivity()));
-        dialog.setContentView(layout.getRoot());
-
-        layout.buttomDesconect.setOnClickListener(
-                view -> {
-                    try {
-                        executor.execute(() -> client.disconnect());
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                });
-        dialog.show();
     }
 
     @Override

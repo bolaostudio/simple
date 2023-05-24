@@ -31,6 +31,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.jesusd0897.crashreporter.model.ReportListener;
 import com.jesusd0897.crashreporter.model.StyleReporter;
 import com.jesusd0897.crashreporter.util.UtilKt;
+import com.nova.simple.BuildConfig;
 import com.nova.simple.R;
 import com.nova.simple.databinding.ActivityMainBinding;
 import com.nova.simple.databinding.NavHeaderMainBinding;
@@ -66,6 +67,15 @@ public class MainActivity extends AppCompatActivity
 
         BottomNavigationView navView = findViewById(R.id.bottom_nav_view);
         DrawerLayout drawerLayout = findViewById(R.id.drawerLayout);
+
+        // hide balances API 26 inferior
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            // Dispositivos compatibles con sendUssdRequest
+            binding.bottomNavView.getMenu().findItem(R.id.navigation_balance).setVisible(true);
+        } else {
+            // Dispositivos no compatibles con sendUssdRequest
+            binding.bottomNavView.getMenu().findItem(R.id.navigation_balance).setVisible(false);
+        }
 
         appBarConfiguration =
                 new AppBarConfiguration.Builder(
@@ -126,12 +136,14 @@ public class MainActivity extends AppCompatActivity
 
                     @Override
                     public void onSendClick(String errorTrace) {
+                        String appVersion = BuildConfig.VERSION_NAME;
+
                         Intent send = new Intent("android.intent.action.SENDTO");
                         send.putExtra(
                                 "android.intent.extra.EMAIL",
                                 new String[] {"simpleapp@zohomail.com"});
-                        send.putExtra("android.intent.extra.SUBJECT", "Reporte/SIMple");
-                        send.putExtra("android.intent.extra.TEXT", errorTrace);
+                        send.putExtra("android.intent.extra.SUBJECT", "BUG/SIMPLE");
+                        send.putExtra("android.intent.extra.TEXT", appVersion + "\n" + errorTrace);
                         send.setType("text/plain");
                         send.setData(Uri.parse("mailto:"));
                         try {
@@ -217,7 +229,7 @@ public class MainActivity extends AppCompatActivity
                 inviteFriend();
                 return true;
             case R.id.activity_about:
-                navController.navigate(R.id.nav_about);
+                navController.navigate(R.id.activity_about);
                 binding.drawerLayout.closeDrawers();
                 return true;
         }

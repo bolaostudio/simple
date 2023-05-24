@@ -15,9 +15,6 @@
             android:id="@+id/nav_settings"
             app:destination="@id/activity_settings" />
 
-        <action
-            android:id="@+id/nav_about"
-            app:destination="@id/activity_about" />
     </fragment>
 
     <fragment
@@ -28,10 +25,6 @@
         <action
             android:id="@+id/nav_settings"
             app:destination="@id/activity_settings" />
-
-        <action
-            android:id="@+id/nav_about"
-            app:destination="@id/activity_about" />
     </fragment>
 
     <fragment
@@ -43,9 +36,6 @@
             android:id="@+id/nav_settings"
             app:destination="@id/activity_settings" />
 
-        <action
-            android:id="@+id/nav_about"
-            app:destination="@id/activity_about" />
     </fragment>
 
     <fragment
@@ -57,10 +47,6 @@
         <action
             android:id="@+id/nav_settings"
             app:destination="@id/activity_settings" />
-
-        <action
-            android:id="@+id/nav_about"
-            app:destination="@id/activity_about" />
     </fragment>
 
     <fragment
@@ -71,10 +57,6 @@
         <action
             android:id="@+id/nav_settings"
             app:destination="@id/activity_settings" />
-
-        <action
-            android:id="@+id/nav_about"
-            app:destination="@id/activity_about" />
     </fragment>
 
     <fragment
@@ -86,10 +68,6 @@
         <action
             android:id="@+id/nav_settings"
             app:destination="@id/activity_settings" />
-
-        <action
-            android:id="@+id/nav_about"
-            app:destination="@id/activity_about" />
     </fragment>
 
 
@@ -105,14 +83,21 @@
         android:label="@string/title_entumovil"
         tools:layout="@layout/fragment_amigo" />
 
+    <fragment
+        android:id="@+id/activity_about"
+        android:name="com.nova.simple.ui.about.AboutFragment"
+        android:label="@string/title_about"
+        tools:layout="@layout/fragment_about" />
+
+    <fragment
+        android:id="@+id/nav_nauta_conectado"
+        android:name="com.nova.simple.ui.nauta.ConectadoFragment"
+        android:label="@string/title_nauta"
+        tools:layout="@layout/fragment_conectado" />
+
     <activity
         android:id="@+id/activity_settings"
         android:name="com.nova.simple.activity.SettingsActivity"
         android:label="Configuración" />
-
-    <activity
-        android:id="@+id/activity_about"
-        android:name="com.nova.simple.activity.AboutActivity"
-        android:label="@string/title_about" />
 
 </navigation>

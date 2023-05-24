@@ -10,6 +10,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.journeyapps.barcodescanner.ScanContract;
 import com.journeyapps.barcodescanner.ScanOptions;
 import com.nova.simple.NovaApplication;
@@ -19,6 +20,7 @@ import com.nova.simple.utils.Pref;
 
 import cu.suitetecsa.sdk.nauta.domain.service.NautaClient;
 
+import java.util.Objects;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -28,11 +30,16 @@ public class PortalUsuarioInfo extends Fragment {
     private NautaClient client;
     private Executor executor;
     private String errorMessage;
+    private BottomNavigationView nav;
 
     @Override
     public View onCreateView(
             @NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = LayoutPortalUsuarioInfoBinding.inflate(inflater, container, false);
+
+        // hide bottomnavigationview
+        nav = Objects.requireNonNull(getActivity()).findViewById(R.id.bottom_nav_view);
+        nav.setVisibility(View.GONE);
 
         NovaApplication app = (NovaApplication) getActivity().getApplicationContext();
         client = app.getNautaClient();
@@ -179,6 +186,7 @@ public class PortalUsuarioInfo extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+        nav.setVisibility(View.VISIBLE);
         // Pref.remove(getActivity(), "USER_INFO");
     }
 }

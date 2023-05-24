@@ -1,57 +1,52 @@
-package com.nova.simple.activity;
+package com.nova.simple.ui.about;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-
-import android.view.Menu;
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.view.View;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import com.google.android.material.elevation.SurfaceColors;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.nova.simple.BuildConfig;
 import com.nova.simple.R;
+import android.view.ViewGroup;
+import androidx.fragment.app.Fragment;
 import com.nova.simple.adapter.ItemsAdapter;
 import com.nova.simple.adapter.ItemsClickListener;
-import com.nova.simple.databinding.ActivityAboutBinding;
+import com.nova.simple.databinding.FragmentAboutBinding;
 import com.nova.simple.model.AboutView;
 import com.nova.simple.model.TypeView;
 import java.util.ArrayList;
+import java.util.Objects;
 
-public class AboutActivity extends AppCompatActivity {
+public class AboutFragment extends Fragment {
 
-    private ActivityAboutBinding binding;
+    private FragmentAboutBinding binding;
     private ItemsAdapter adapter;
     private ArrayList<TypeView> item = new ArrayList<>();
+    private BottomNavigationView nav;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        binding = ActivityAboutBinding.inflate(LayoutInflater.from(this));
-        setContentView(binding.getRoot());
-        setSupportActionBar(binding.toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setTitle(R.string.title_about);
+    public View onCreateView(
+            LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        binding = FragmentAboutBinding.inflate(inflater, container, false);
 
-        // navbar color
-        getWindow().setNavigationBarColor(SurfaceColors.SURFACE_0.getColor(this));
+        // hide bottomnavigationview
+        nav = Objects.requireNonNull(getActivity()).findViewById(R.id.bottom_nav_view);
+        nav.setVisibility(View.GONE);
 
         // version app
         String version = BuildConfig.VERSION_NAME;
         binding.buttomVersion.setText(version);
-
-        //
         binding.recyclerView.setHasFixedSize(true);
         binding.recyclerView.setNestedScrollingEnabled(false);
-        adapter = new ItemsAdapter(this, item);
+        adapter = new ItemsAdapter(getActivity(), item);
         binding.recyclerView.setAdapter(adapter);
-        binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        binding.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         list_contributor();
         binding.recyclerView.addOnItemTouchListener(
                 new ItemsClickListener(
-                        this,
+                        getActivity(),
                         binding.recyclerView,
                         (view, position) -> {
                             if (position == 0) {
@@ -78,7 +73,7 @@ public class AboutActivity extends AppCompatActivity {
                     startActivity(
                             new Intent(
                                     Intent.ACTION_VIEW,
-                                    Uri.parse("https://github.com/esalessandrxx/simple-cuba")));
+                                    Uri.parse("https://github.com/esnoova/simple/")));
                 });
         binding.buttomTwitterSimple.setOnClickListener(
                 view -> {
@@ -107,6 +102,7 @@ public class AboutActivity extends AppCompatActivity {
                                     Intent.ACTION_VIEW,
                                     Uri.parse("https://instagram.com/esalessandrx")));
                 });
+        return binding.getRoot();
     }
 
     private void list_contributor() {
@@ -121,5 +117,12 @@ public class AboutActivity extends AppCompatActivity {
                         getString(R.string.about_name3), getString(R.string.about_desc_name3)));
         item.add(
                 new AboutView(getString(R.string.about_beta), getString(R.string.about_desc_beta)));
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+        nav.setVisibility(View.VISIBLE);
     }
 }
