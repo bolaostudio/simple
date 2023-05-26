@@ -431,15 +431,33 @@ public class BalanceFragment extends Fragment {
                         }
                     }
                 };
-        telephonyManager.sendUssdRequest("*222#", saldo, new Handler(Looper.getMainLooper()));
+        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.CALL_PHONE)
+                != PackageManager.PERMISSION_GRANTED) {
 
+            ActivityCompat.requestPermissions(
+                    getActivity(), new String[] {Manifest.permission.CALL_PHONE}, 20);
+        } else {
+            telephonyManager.sendUssdRequest("*222#", saldo, new Handler(Looper.getMainLooper()));
+        }
+        
         new Handler(Looper.getMainLooper())
                 .postDelayed(
                         new Runnable() {
                             @Override
                             public void run() {
-                                telephonyManager.sendUssdRequest(
-                                        "*222*328#", datos, new Handler(Looper.getMainLooper()));
+                                if (ActivityCompat.checkSelfPermission(
+                                                getContext(), Manifest.permission.CALL_PHONE)
+                                        != PackageManager.PERMISSION_GRANTED) {
+                                    ActivityCompat.requestPermissions(
+                                            getActivity(),
+                                            new String[] {Manifest.permission.CALL_PHONE},
+                                            20);
+                                } else {
+                                    telephonyManager.sendUssdRequest(
+                                            "*222*328#",
+                                            datos,
+                                            new Handler(Looper.getMainLooper()));
+                                }
                             }
                         },
                         4000);
@@ -448,8 +466,19 @@ public class BalanceFragment extends Fragment {
                         new Runnable() {
                             @Override
                             public void run() {
-                                telephonyManager.sendUssdRequest(
-                                        "*222*266#", bonos, new Handler(Looper.getMainLooper()));
+                                if (ActivityCompat.checkSelfPermission(
+                                                getContext(), Manifest.permission.CALL_PHONE)
+                                        != PackageManager.PERMISSION_GRANTED) {
+                                    ActivityCompat.requestPermissions(
+                                            getActivity(),
+                                            new String[] {Manifest.permission.CALL_PHONE},
+                                            20);
+                                } else {
+                                    telephonyManager.sendUssdRequest(
+                                            "*222*266#",
+                                            bonos,
+                                            new Handler(Looper.getMainLooper()));
+                                }
                             }
                         },
                         8000);
@@ -459,8 +488,20 @@ public class BalanceFragment extends Fragment {
                         new Runnable() {
                             @Override
                             public void run() {
-                                telephonyManager.sendUssdRequest(
-                                        "*222*767#", mensajes, new Handler(Looper.getMainLooper()));
+                                if (ActivityCompat.checkSelfPermission(
+                                                getContext(), Manifest.permission.CALL_PHONE)
+                                        != PackageManager.PERMISSION_GRANTED) {
+
+                                    ActivityCompat.requestPermissions(
+                                            getActivity(),
+                                            new String[] {Manifest.permission.CALL_PHONE},
+                                            20);
+                                } else {
+                                    telephonyManager.sendUssdRequest(
+                                            "*222*767#",
+                                            mensajes,
+                                            new Handler(Looper.getMainLooper()));
+                                }
                             }
                         },
                         16000);
@@ -469,8 +510,20 @@ public class BalanceFragment extends Fragment {
                         new Runnable() {
                             @Override
                             public void run() {
-                                telephonyManager.sendUssdRequest(
-                                        "*222*869#", minutos, new Handler(Looper.getMainLooper()));
+                                if (ActivityCompat.checkSelfPermission(
+                                                getContext(), Manifest.permission.CALL_PHONE)
+                                        != PackageManager.PERMISSION_GRANTED) {
+
+                                    ActivityCompat.requestPermissions(
+                                            getActivity(),
+                                            new String[] {Manifest.permission.CALL_PHONE},
+                                            20);
+                                } else {
+                                    telephonyManager.sendUssdRequest(
+                                            "*222*869#",
+                                            minutos,
+                                            new Handler(Looper.getMainLooper()));
+                                }
                             }
                         },
                         24000);
