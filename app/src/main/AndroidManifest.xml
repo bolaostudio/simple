@@ -55,15 +55,12 @@
             android:exported="true"
             android:label="@string/title_settings"
             android:screenOrientation="portrait" />
-        <activity
-            android:name="com.nova.simple.activity.AboutActivity"
-            android:exported="true"
-            android:label="@string/title_about"
-            android:screenOrientation="portrait" />
+
         <activity
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:screenOrientation="portrait"
             tools:replace="screenOrientation" />
+        
         <activity
             android:name="com.nova.simple.perfil.PerfilActivity"
             android:screenOrientation="portrait"
