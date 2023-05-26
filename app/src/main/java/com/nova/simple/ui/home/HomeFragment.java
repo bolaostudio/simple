@@ -43,7 +43,7 @@ import java.util.Objects;
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
-    
+
     SharedPreferences sp_sim;
     String simslot;
 
@@ -398,8 +398,9 @@ public class HomeFragment extends Fragment {
                                             getActivity()
                                                     .getContentResolver()
                                                     .query(uri, null, null, null, null);
-                                    if (cursor.getCount() > 0) {
+                                    if (cursor != null && cursor.getCount() > 0) {
                                         while (cursor.moveToNext()) {
+
                                             String id =
                                                     cursor.getString(
                                                             cursor.getColumnIndex(
