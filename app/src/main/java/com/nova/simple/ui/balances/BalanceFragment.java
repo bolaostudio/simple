@@ -1,6 +1,7 @@
 package com.nova.simple.ui.balances;
 
 import android.Manifest;
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -32,6 +33,7 @@ import com.nova.simple.receiver.BalanceNotification;
 import java.util.Calendar;
 import java.util.Date;
 
+@TargetApi(26)
 public class BalanceFragment extends Fragment {
 
     private FragmentBalanceBinding binding;
