@@ -6,7 +6,9 @@ android {
     namespace 'com.nova.simple'
     compileSdk 33
     buildToolsVersion "33.0.0"
-
+    lint {
+        baseline = file("lint-baseline.xml")
+}
     defaultConfig {
         applicationId "com.nova.simple"
         minSdk 23
@@ -31,6 +33,7 @@ android {
     buildFeatures {
         viewBinding true
     }
+    
 }
 
 dependencies {
