@@ -39,7 +39,6 @@ import com.nova.simple.perfil.PerfilActivity;
 import com.nova.simple.perfil.SaveInage;
 import com.nova.simple.services.FloatingWindow;
 
-import com.nova.simple.ui.settings.SettingsFragment;
 import java.io.File;
 import java.util.Calendar;
 import java.util.Locale;
