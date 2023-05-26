@@ -81,7 +81,9 @@ public class BalanceFragment extends Fragment {
                                     .setCancelable(false)
                                     .create();
                     dialog.show();
-                    update_balances();
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        update_balances();
+                    }
                 });
 
         binding.textSaldo.setText(sp_sim.getString("saldo", "0.00 CUP"));
@@ -149,401 +151,407 @@ public class BalanceFragment extends Fragment {
         binding.progressPaquete.setProgress(porcentage);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     private void update_balances() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            TelephonyManager telephonyManager =
+                    (TelephonyManager) getActivity().getSystemService(Context.TELEPHONY_SERVICE);
 
-        TelephonyManager telephonyManager =
-                (TelephonyManager) getActivity().getSystemService(Context.TELEPHONY_SERVICE);
+            USSDResponseCallback saldo =
+                    new USSDResponseCallback() {
+                        @Override
+                        public void onUSSDReceived(String message) {
+                            if (getActivity() != null && isVisible()) {
+                                String saldo =
+                                        message.toString()
+                                                .replace("Saldo:", "")
+                                                .replaceFirst("CUP(.*)", "")
+                                                .trim();
+                                StringBuilder sBuilder = new StringBuilder();
+                                sBuilder.append(saldo);
+                                sBuilder.append(" CUP");
+                                editor.putString("saldo", sBuilder.toString().trim());
+                                editor.apply();
+                                binding.textSaldo.setText(sBuilder);
 
-        USSDResponseCallback saldo =
-                new USSDResponseCallback() {
-                    @Override
-                    public void onUSSDReceived(String message) {
-                        if (getActivity() != null && isVisible()) {
-                            String saldo =
-                                    message.toString()
-                                            .replace("Saldo:", "")
-                                            .replaceFirst("CUP(.*)", "")
-                                            .trim();
-                            StringBuilder sBuilder = new StringBuilder();
-                            sBuilder.append(saldo);
-                            sBuilder.append(" CUP");
-                            editor.putString("saldo", sBuilder.toString().trim());
-                            editor.apply();
-                            binding.textSaldo.setText(sBuilder);
-
-                            String vence_saldo =
-                                    message.toString()
-                                            .replaceFirst("(.*)vence ", "")
-                                            .replace("-", "/")
-                                            .replace(".", "")
-                                            .trim();
-                            StringBuilder vBuilder = new StringBuilder();
-                            vBuilder.append("Expira: ");
-                            vBuilder.append(vence_saldo);
-                            editor.putString("vence_saldo", vBuilder.toString().trim());
-                            editor.apply();
-                            binding.textVenceSaldo.setText(vBuilder);
+                                String vence_saldo =
+                                        message.toString()
+                                                .replaceFirst("(.*)vence ", "")
+                                                .replace("-", "/")
+                                                .replace(".", "")
+                                                .trim();
+                                StringBuilder vBuilder = new StringBuilder();
+                                vBuilder.append("Expira: ");
+                                vBuilder.append(vence_saldo);
+                                editor.putString("vence_saldo", vBuilder.toString().trim());
+                                editor.apply();
+                                binding.textVenceSaldo.setText(vBuilder);
+                            }
                         }
-                    }
 
-                    @Override
-                    public void onUSSDReceivedFailed() {
-                        if (getActivity() != null && isVisible()) {
-                            Toast.makeText(
-                                            getActivity(),
-                                            "¡Error en la red! No fue posible consultar su saldo",
-                                            Toast.LENGTH_LONG)
-                                    .show();
+                        @Override
+                        public void onUSSDReceivedFailed() {
+                            if (getActivity() != null && isVisible()) {
+                                Toast.makeText(
+                                                getActivity(),
+                                                "¡Error en la red! No fue posible consultar su saldo",
+                                                Toast.LENGTH_LONG)
+                                        .show();
+                            }
                         }
-                    }
-                };
+                    };
 
-        USSDResponseCallback datos =
-                new USSDResponseCallback() {
-                    @Override
-                    public void onUSSDReceived(String message) {
-                        if (getActivity() != null && isVisible()) {
-                            String tarifa =
-                                    message.toString()
-                                            .replaceFirst("Usted debe adquirir(.*)", "0 MB")
-                                            .replaceFirst("Paquetes(.*)", "")
-                                            .replaceFirst("Diaria(.*)", "")
-                                            .replaceFirst("Mensajeria(.*)", "")
-                                            .replaceFirst("(.*)Tarifa:", "")
-                                            .replace(
-                                                    "No activa.",
-                                                    getString(R.string.tarifa_desactiva))
-                                            .replace("Activa", getString(R.string.tarifa_activa))
-                                            .replace(".", "");
-                            editor.putString("tarifa", tarifa.toString().trim());
-                            editor.apply();
-                            binding.textTarifa.setText(tarifa);
+            USSDResponseCallback datos =
+                    new USSDResponseCallback() {
+                        @Override
+                        public void onUSSDReceived(String message) {
+                            if (getActivity() != null && isVisible()) {
+                                String tarifa =
+                                        message.toString()
+                                                .replaceFirst("Usted debe adquirir(.*)", "0 MB")
+                                                .replaceFirst("Paquetes(.*)", "")
+                                                .replaceFirst("Diaria(.*)", "")
+                                                .replaceFirst("Mensajeria(.*)", "")
+                                                .replaceFirst("(.*)Tarifa:", "")
+                                                .replace(
+                                                        "No activa.",
+                                                        getString(R.string.tarifa_desactiva))
+                                                .replace(
+                                                        "Activa", getString(R.string.tarifa_activa))
+                                                .replace(".", "");
+                                editor.putString("tarifa", tarifa.toString().trim());
+                                editor.apply();
+                                binding.textTarifa.setText(tarifa);
 
-                            // estado de paquete 3G/LTE
-                            String s =
-                                    message.toString()
-                                            .replaceFirst("(.*)No activa.", "")
-                                            .replaceFirst("(.*)Activa.", "");
-                            String paquete =
-                                    s.replaceFirst("Usted debe adquirir(.*)", "0 MB")
-                                            .replaceFirst("(.*)Paquetes: ", "")
-                                            .replaceFirst("\\+(.*)", "")
-                                            .replaceFirst("Diaria(.*)", "0 MB")
-                                            .replaceFirst("Mensajeria(.*)", "0 MB")
-                                            .replaceFirst("validos(.*)", "")
-                                            .replaceFirst("no activos(.*)", "");
-                            editor.putString("paquete", paquete.toString().trim());
-                            editor.apply();
-                            binding.textPaquete.setText(paquete);
+                                // estado de paquete 3G/LTE
+                                String s =
+                                        message.toString()
+                                                .replaceFirst("(.*)No activa.", "")
+                                                .replaceFirst("(.*)Activa.", "");
+                                String paquete =
+                                        s.replaceFirst("Usted debe adquirir(.*)", "0 MB")
+                                                .replaceFirst("(.*)Paquetes: ", "")
+                                                .replaceFirst("\\+(.*)", "")
+                                                .replaceFirst("Diaria(.*)", "0 MB")
+                                                .replaceFirst("Mensajeria(.*)", "0 MB")
+                                                .replaceFirst("validos(.*)", "")
+                                                .replaceFirst("no activos(.*)", "");
+                                editor.putString("paquete", paquete.toString().trim());
+                                editor.apply();
+                                binding.textPaquete.setText(paquete);
 
-                            // estado de paquete LTE
-                            String lte =
-                                    s.replaceFirst("Usted debe adquirir(.*)", "0 MB")
-                                            .replaceFirst("(.*)Paquetes: ", "")
-                                            .replaceFirst("Diaria(.*)", "0 MB")
-                                            .replaceFirst("Mensajeria(.*)", "0 MB")
-                                            .replaceFirst("(.*)\\+", "")
-                                            .replaceFirst("LTE(.*)", "")
-                                            .replaceFirst("(.*)validos(.*)", "0 MB")
-                                            .replaceFirst("no activos(.*)", "")
-                                            .trim();
-                            editor.putString("lte", lte.toString().trim());
-                            editor.apply();
-                            binding.textPaqueteLte.setText(lte);
+                                // estado de paquete LTE
+                                String lte =
+                                        s.replaceFirst("Usted debe adquirir(.*)", "0 MB")
+                                                .replaceFirst("(.*)Paquetes: ", "")
+                                                .replaceFirst("Diaria(.*)", "0 MB")
+                                                .replaceFirst("Mensajeria(.*)", "0 MB")
+                                                .replaceFirst("(.*)\\+", "")
+                                                .replaceFirst("LTE(.*)", "")
+                                                .replaceFirst("(.*)validos(.*)", "0 MB")
+                                                .replaceFirst("no activos(.*)", "")
+                                                .trim();
+                                editor.putString("lte", lte.toString().trim());
+                                editor.apply();
+                                binding.textPaqueteLte.setText(lte);
 
-                            // vence paquetes
-                            String vence_datos =
-                                    message.toString()
-                                            .replaceFirst("(.*)validos", "")
-                                            .replace("dias.", "días")
-                                            .replace("no activos", "sin usar")
-                                            .replaceFirst("(.*)LTE", "");
-                            editor.putString("venceDat", vence_datos.toString().trim());
-                            editor.apply();
-                            binding.textVencePaquetes.setText(vence_datos);
+                                // vence paquetes
+                                String vence_datos =
+                                        message.toString()
+                                                .replaceFirst("(.*)validos", "")
+                                                .replace("dias.", "días")
+                                                .replace("no activos", "sin usar")
+                                                .replaceFirst("(.*)LTE", "");
+                                editor.putString("venceDat", vence_datos.toString().trim());
+                                editor.apply();
+                                binding.textVencePaquetes.setText(vence_datos);
 
-                            // estado mensajeria
-                            String mensajeria =
-                                    s.replaceFirst("Usted debe adquirir(.*)", "0 MB")
-                                            .replaceFirst("(.*)Mensajeria:", "")
-                                            .replaceFirst("Diaria:(.*)", "0 MB")
-                                            .replaceFirst("Paquetes(.*)", "0 MB")
-                                            .replaceFirst("validos(.*)", "")
-                                            .replace("no activos.", "");
-                            editor.putString("mensajeria", mensajeria.toString().trim());
-                            editor.apply();
-                            binding.textMensajeria.setText(mensajeria);
+                                // estado mensajeria
+                                String mensajeria =
+                                        s.replaceFirst("Usted debe adquirir(.*)", "0 MB")
+                                                .replaceFirst("(.*)Mensajeria:", "")
+                                                .replaceFirst("Diaria:(.*)", "0 MB")
+                                                .replaceFirst("Paquetes(.*)", "0 MB")
+                                                .replaceFirst("validos(.*)", "")
+                                                .replace("no activos.", "");
+                                editor.putString("mensajeria", mensajeria.toString().trim());
+                                editor.apply();
+                                binding.textMensajeria.setText(mensajeria);
 
-                            // vence mensajeria
-                            String vence_mensajeria =
-                                    s.replaceFirst(
-                                                    "Usted debe adquirir(.*)",
-                                                    getString(R.string.vence_dias))
-                                            .replaceFirst("(.*)Mensajeria:", "")
-                                            .replaceFirst(
-                                                    "Diaria:(.*)", getString(R.string.vence_dias))
-                                            .replaceFirst(
-                                                    "Paquetes(.*)", getString(R.string.vence_dias))
-                                            .replaceFirst("(.*)validos", "")
-                                            .replace("vencen hoy", "vence hoy")
-                                            .replace("no activos.", "")
-                                            .replace("dias.", getString(R.string.dias));
-                            editor.putString(
-                                    "vence_mensajeria", vence_mensajeria.toString().trim());
-                            editor.apply();
-                            binding.textVenceMensajeria.setText(vence_mensajeria);
+                                // vence mensajeria
+                                String vence_mensajeria =
+                                        s.replaceFirst(
+                                                        "Usted debe adquirir(.*)",
+                                                        getString(R.string.vence_dias))
+                                                .replaceFirst("(.*)Mensajeria:", "")
+                                                .replaceFirst(
+                                                        "Diaria:(.*)",
+                                                        getString(R.string.vence_dias))
+                                                .replaceFirst(
+                                                        "Paquetes(.*)",
+                                                        getString(R.string.vence_dias))
+                                                .replaceFirst("(.*)validos", "")
+                                                .replace("vencen hoy", "vence hoy")
+                                                .replace("no activos.", "")
+                                                .replace("dias.", getString(R.string.dias));
+                                editor.putString(
+                                        "vence_mensajeria", vence_mensajeria.toString().trim());
+                                editor.apply();
+                                binding.textVenceMensajeria.setText(vence_mensajeria);
 
-                            // --> estado bolsa diaria
-                            String diaria =
-                                    s.replace("Paquetes: No dispone de MB.", "")
-                                            .replaceFirst("Usted debe adquirir(.*)", "0 MB")
-                                            .replaceFirst("Paquetes(.*)", "0 MB")
-                                            .replace("Diaria:", "")
-                                            .replaceFirst("Mensajeria(.*)", "0 MB")
-                                            .replace("no activos.", "")
-                                            .replaceFirst("validos(.*)", "");
-                            editor.putString("diaria", diaria.toString().trim());
-                            editor.apply();
-                            binding.textDiaria.setText(diaria);
+                                // --> estado bolsa diaria
+                                String diaria =
+                                        s.replace("Paquetes: No dispone de MB.", "")
+                                                .replaceFirst("Usted debe adquirir(.*)", "0 MB")
+                                                .replaceFirst("Paquetes(.*)", "0 MB")
+                                                .replace("Diaria:", "")
+                                                .replaceFirst("Mensajeria(.*)", "0 MB")
+                                                .replace("no activos.", "")
+                                                .replaceFirst("validos(.*)", "");
+                                editor.putString("diaria", diaria.toString().trim());
+                                editor.apply();
+                                binding.textDiaria.setText(diaria);
 
-                            // --> Vence bolsa diaria
-                            String vence_diaria =
-                                    s.replaceFirst("Usted debe adquirir", "")
-                                            .replace("Diaria:", "")
-                                            .replaceFirst("Mensajeria(.*)", "")
-                                            .replaceFirst(
-                                                    "Paquetes(.*)", getString(R.string.vence_horas))
-                                            .replaceFirst("(.*)validos", "")
-                                            .replaceFirst("(.*)no activos", "24 horas")
-                                            .replace("horas.", getString(R.string.horas));
-                            editor.putString("venceDiaria", vence_diaria.toString().trim());
-                            editor.apply();
-                            binding.textVenceDiaria.setText(vence_diaria);
+                                // --> Vence bolsa diaria
+                                String vence_diaria =
+                                        s.replaceFirst("Usted debe adquirir", "")
+                                                .replace("Diaria:", "")
+                                                .replaceFirst("Mensajeria(.*)", "")
+                                                .replaceFirst(
+                                                        "Paquetes(.*)",
+                                                        getString(R.string.vence_horas))
+                                                .replaceFirst("(.*)validos", "")
+                                                .replaceFirst("(.*)no activos", "24 horas")
+                                                .replace("horas.", getString(R.string.horas));
+                                editor.putString("venceDiaria", vence_diaria.toString().trim());
+                                editor.apply();
+                                binding.textVenceDiaria.setText(vence_diaria);
+                            }
                         }
-                    }
 
-                    @Override
-                    public void onUSSDReceivedFailed() {
-                        if (getActivity() != null && isVisible()) {
-                            Toast.makeText(
-                                            getActivity(),
-                                            "¡Error en la red! No fue posible consultar sus datos",
-                                            Toast.LENGTH_LONG)
-                                    .show();
+                        @Override
+                        public void onUSSDReceivedFailed() {
+                            if (getActivity() != null && isVisible()) {
+                                Toast.makeText(
+                                                getActivity(),
+                                                "¡Error en la red! No fue posible consultar sus datos",
+                                                Toast.LENGTH_LONG)
+                                        .show();
+                            }
                         }
-                    }
-                };
-        USSDResponseCallback bonos =
-                new USSDResponseCallback() {
-                    @Override
-                    public void onUSSDReceived(String message) {
-                        if (getActivity() != null && isVisible()) {
-                            String nacional =
-                                    message.toString()
-                                            .replaceFirst("(.*)Datos.cu ", "")
-                                            .replaceFirst("Usted no dispone(.*)", "0 MB")
-                                            .replace("no activos", "")
-                                            .replaceFirst("vence(.*)", "");
-                            editor.putString("nacional", nacional.toString().trim());
-                            editor.apply();
-                            binding.textPaqueteNacional.setText(nacional);
+                    };
+            USSDResponseCallback bonos =
+                    new USSDResponseCallback() {
+                        @Override
+                        public void onUSSDReceived(String message) {
+                            if (getActivity() != null && isVisible()) {
+                                String nacional =
+                                        message.toString()
+                                                .replaceFirst("(.*)Datos.cu ", "")
+                                                .replaceFirst("Usted no dispone(.*)", "0 MB")
+                                                .replace("no activos", "")
+                                                .replaceFirst("vence(.*)", "");
+                                editor.putString("nacional", nacional.toString().trim());
+                                editor.apply();
+                                binding.textPaqueteNacional.setText(nacional);
+                            }
                         }
-                    }
 
-                    @Override
-                    public void onUSSDReceivedFailed() {
-                        if (getActivity() != null && isVisible()) {
-                            Toast.makeText(
-                                            getActivity(),
-                                            "¡Error en la red! No fue posible consultar sus bonos",
-                                            Toast.LENGTH_LONG)
-                                    .show();
+                        @Override
+                        public void onUSSDReceivedFailed() {
+                            if (getActivity() != null && isVisible()) {
+                                Toast.makeText(
+                                                getActivity(),
+                                                "¡Error en la red! No fue posible consultar sus bonos",
+                                                Toast.LENGTH_LONG)
+                                        .show();
+                            }
                         }
-                    }
-                };
+                    };
 
-        USSDResponseCallback mensajes =
-                new USSDResponseCallback() {
-                    @Override
-                    public void onUSSDReceived(String message) {
-                        if (getActivity() != null && isVisible()) {
-                            String mensajes =
-                                    message.toString()
-                                            .replaceFirst("(.*)dispone de", "")
-                                            .replaceFirst("validos(.*)", "")
-                                            .replaceFirst("Usted debe adquirir(.*)", "0 SMS")
-                                            .replace("no activos", "");
-                            editor.putString("sms", mensajes.toString().trim());
-                            editor.apply();
-                            binding.textMensajes.setText(mensajes);
+            USSDResponseCallback mensajes =
+                    new USSDResponseCallback() {
+                        @Override
+                        public void onUSSDReceived(String message) {
+                            if (getActivity() != null && isVisible()) {
+                                String mensajes =
+                                        message.toString()
+                                                .replaceFirst("(.*)dispone de", "")
+                                                .replaceFirst("validos(.*)", "")
+                                                .replaceFirst("Usted debe adquirir(.*)", "0 SMS")
+                                                .replace("no activos", "");
+                                editor.putString("sms", mensajes.toString().trim());
+                                editor.apply();
+                                binding.textMensajes.setText(mensajes);
 
-                            // vence mensajes y minutos
-                            String vence_mensajes =
-                                    message.toString()
-                                            .replaceFirst(
-                                                    "Usted debe adquirir(.*)",
-                                                    getString(R.string.vence_dias))
-                                            .replaceFirst("Para una nueva(.*)", "")
-                                            .replaceFirst("(.*)validos por", "")
-                                            .replace("1 dia.", "24h")
-                                            .replace("dias", getString(R.string.dias));
-                            editor.putString("vence_mensajes", vence_mensajes.toString().trim());
-                            editor.apply();
+                                // vence mensajes y minutos
+                                String vence_mensajes =
+                                        message.toString()
+                                                .replaceFirst(
+                                                        "Usted debe adquirir(.*)",
+                                                        getString(R.string.vence_dias))
+                                                .replaceFirst("Para una nueva(.*)", "")
+                                                .replaceFirst("(.*)validos por", "")
+                                                .replace("1 dia.", "24h")
+                                                .replace("dias", getString(R.string.dias));
+                                editor.putString(
+                                        "vence_mensajes", vence_mensajes.toString().trim());
+                                editor.apply();
 
-                            binding.textVenceSMS.setText(vence_mensajes);
+                                binding.textVenceSMS.setText(vence_mensajes);
+                            }
                         }
-                    }
 
-                    @Override
-                    public void onUSSDReceivedFailed() {
-                        if (getActivity() != null && isVisible()) {
-                            Toast.makeText(
-                                            getActivity(),
-                                            "¡Error en la red! No fue posible consultar sus mensajes",
-                                            Toast.LENGTH_LONG)
-                                    .show();
+                        @Override
+                        public void onUSSDReceivedFailed() {
+                            if (getActivity() != null && isVisible()) {
+                                Toast.makeText(
+                                                getActivity(),
+                                                "¡Error en la red! No fue posible consultar sus mensajes",
+                                                Toast.LENGTH_LONG)
+                                        .show();
+                            }
                         }
-                    }
-                };
+                    };
 
-        USSDResponseCallback minutos =
-                new USSDResponseCallback() {
-                    @Override
-                    public void onUSSDReceived(String message) {
-                        if (getActivity() != null && isVisible()) {
-                            String minutos =
-                                    message.toString()
-                                            .replaceFirst("(.*)dispone de", "")
-                                            .replaceFirst("MIN(.*)", "")
-                                            .replaceFirst("Usted debe adquirir(.*)", "00:00:00")
-                                            .replace("no activos", "");
-                            editor.putString("min", minutos.toString().trim());
-                            editor.apply();
-                            binding.textMinutos.setText(minutos);
+            USSDResponseCallback minutos =
+                    new USSDResponseCallback() {
+                        @Override
+                        public void onUSSDReceived(String message) {
+                            if (getActivity() != null && isVisible()) {
+                                String minutos =
+                                        message.toString()
+                                                .replaceFirst("(.*)dispone de", "")
+                                                .replaceFirst("MIN(.*)", "")
+                                                .replaceFirst("Usted debe adquirir(.*)", "00:00:00")
+                                                .replace("no activos", "");
+                                editor.putString("min", minutos.toString().trim());
+                                editor.apply();
+                                binding.textMinutos.setText(minutos);
+                            }
                         }
-                    }
 
-                    @Override
-                    public void onUSSDReceivedFailed() {
-                        if (getActivity() != null && isVisible()) {
-                            Toast.makeText(
-                                            getActivity(),
-                                            "¡Error en la red! No fue posible consultar sus minutos",
-                                            Toast.LENGTH_LONG)
-                                    .show();
+                        @Override
+                        public void onUSSDReceivedFailed() {
+                            if (getActivity() != null && isVisible()) {
+                                Toast.makeText(
+                                                getActivity(),
+                                                "¡Error en la red! No fue posible consultar sus minutos",
+                                                Toast.LENGTH_LONG)
+                                        .show();
+                            }
                         }
-                    }
-                };
-        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.CALL_PHONE)
-                != PackageManager.PERMISSION_GRANTED) {
+                    };
+            if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.CALL_PHONE)
+                    != PackageManager.PERMISSION_GRANTED) {
 
-            ActivityCompat.requestPermissions(
-                    getActivity(), new String[] {Manifest.permission.CALL_PHONE}, 20);
-        } else {
-            telephonyManager.sendUssdRequest("*222#", saldo, new Handler(Looper.getMainLooper()));
+                ActivityCompat.requestPermissions(
+                        getActivity(), new String[] {Manifest.permission.CALL_PHONE}, 20);
+            } else {
+                telephonyManager.sendUssdRequest(
+                        "*222#", saldo, new Handler(Looper.getMainLooper()));
+            }
+
+            new Handler(Looper.getMainLooper())
+                    .postDelayed(
+                            new Runnable() {
+                                @Override
+                                public void run() {
+                                    if (ActivityCompat.checkSelfPermission(
+                                                    getContext(), Manifest.permission.CALL_PHONE)
+                                            != PackageManager.PERMISSION_GRANTED) {
+                                        ActivityCompat.requestPermissions(
+                                                getActivity(),
+                                                new String[] {Manifest.permission.CALL_PHONE},
+                                                20);
+                                    } else {
+                                        telephonyManager.sendUssdRequest(
+                                                "*222*328#",
+                                                datos,
+                                                new Handler(Looper.getMainLooper()));
+                                    }
+                                }
+                            },
+                            4000);
+            new Handler(Looper.getMainLooper())
+                    .postDelayed(
+                            new Runnable() {
+                                @Override
+                                public void run() {
+                                    if (ActivityCompat.checkSelfPermission(
+                                                    getContext(), Manifest.permission.CALL_PHONE)
+                                            != PackageManager.PERMISSION_GRANTED) {
+                                        ActivityCompat.requestPermissions(
+                                                getActivity(),
+                                                new String[] {Manifest.permission.CALL_PHONE},
+                                                20);
+                                    } else {
+                                        telephonyManager.sendUssdRequest(
+                                                "*222*266#",
+                                                bonos,
+                                                new Handler(Looper.getMainLooper()));
+                                    }
+                                }
+                            },
+                            8000);
+
+            new Handler(Looper.getMainLooper())
+                    .postDelayed(
+                            new Runnable() {
+                                @Override
+                                public void run() {
+                                    if (ActivityCompat.checkSelfPermission(
+                                                    getContext(), Manifest.permission.CALL_PHONE)
+                                            != PackageManager.PERMISSION_GRANTED) {
+
+                                        ActivityCompat.requestPermissions(
+                                                getActivity(),
+                                                new String[] {Manifest.permission.CALL_PHONE},
+                                                20);
+                                    } else {
+                                        telephonyManager.sendUssdRequest(
+                                                "*222*767#",
+                                                mensajes,
+                                                new Handler(Looper.getMainLooper()));
+                                    }
+                                }
+                            },
+                            16000);
+            new Handler(Looper.getMainLooper())
+                    .postDelayed(
+                            new Runnable() {
+                                @Override
+                                public void run() {
+                                    if (ActivityCompat.checkSelfPermission(
+                                                    getContext(), Manifest.permission.CALL_PHONE)
+                                            != PackageManager.PERMISSION_GRANTED) {
+
+                                        ActivityCompat.requestPermissions(
+                                                getActivity(),
+                                                new String[] {Manifest.permission.CALL_PHONE},
+                                                20);
+                                    } else {
+                                        telephonyManager.sendUssdRequest(
+                                                "*222*869#",
+                                                minutos,
+                                                new Handler(Looper.getMainLooper()));
+                                    }
+                                }
+                            },
+                            24000);
+
+            // stop refresh
+            new Handler(Looper.getMainLooper())
+                    .postDelayed(
+                            new Runnable() {
+                                @Override
+                                public void run() {
+                                    binding.swipeRefresh.setRefreshing(false);
+                                    dialog.dismiss();
+                                    updateNotification();
+                                }
+                            },
+                            25000);
         }
-
-        new Handler(Looper.getMainLooper())
-                .postDelayed(
-                        new Runnable() {
-                            @Override
-                            public void run() {
-                                if (ActivityCompat.checkSelfPermission(
-                                                getContext(), Manifest.permission.CALL_PHONE)
-                                        != PackageManager.PERMISSION_GRANTED) {
-                                    ActivityCompat.requestPermissions(
-                                            getActivity(),
-                                            new String[] {Manifest.permission.CALL_PHONE},
-                                            20);
-                                } else {
-                                    telephonyManager.sendUssdRequest(
-                                            "*222*328#",
-                                            datos,
-                                            new Handler(Looper.getMainLooper()));
-                                }
-                            }
-                        },
-                        4000);
-        new Handler(Looper.getMainLooper())
-                .postDelayed(
-                        new Runnable() {
-                            @Override
-                            public void run() {
-                                if (ActivityCompat.checkSelfPermission(
-                                                getContext(), Manifest.permission.CALL_PHONE)
-                                        != PackageManager.PERMISSION_GRANTED) {
-                                    ActivityCompat.requestPermissions(
-                                            getActivity(),
-                                            new String[] {Manifest.permission.CALL_PHONE},
-                                            20);
-                                } else {
-                                    telephonyManager.sendUssdRequest(
-                                            "*222*266#",
-                                            bonos,
-                                            new Handler(Looper.getMainLooper()));
-                                }
-                            }
-                        },
-                        8000);
-
-        new Handler(Looper.getMainLooper())
-                .postDelayed(
-                        new Runnable() {
-                            @Override
-                            public void run() {
-                                if (ActivityCompat.checkSelfPermission(
-                                                getContext(), Manifest.permission.CALL_PHONE)
-                                        != PackageManager.PERMISSION_GRANTED) {
-
-                                    ActivityCompat.requestPermissions(
-                                            getActivity(),
-                                            new String[] {Manifest.permission.CALL_PHONE},
-                                            20);
-                                } else {
-                                    telephonyManager.sendUssdRequest(
-                                            "*222*767#",
-                                            mensajes,
-                                            new Handler(Looper.getMainLooper()));
-                                }
-                            }
-                        },
-                        16000);
-        new Handler(Looper.getMainLooper())
-                .postDelayed(
-                        new Runnable() {
-                            @Override
-                            public void run() {
-                                if (ActivityCompat.checkSelfPermission(
-                                                getContext(), Manifest.permission.CALL_PHONE)
-                                        != PackageManager.PERMISSION_GRANTED) {
-
-                                    ActivityCompat.requestPermissions(
-                                            getActivity(),
-                                            new String[] {Manifest.permission.CALL_PHONE},
-                                            20);
-                                } else {
-                                    telephonyManager.sendUssdRequest(
-                                            "*222*869#",
-                                            minutos,
-                                            new Handler(Looper.getMainLooper()));
-                                }
-                            }
-                        },
-                        24000);
-
-        // stop refresh
-        new Handler(Looper.getMainLooper())
-                .postDelayed(
-                        new Runnable() {
-                            @Override
-                            public void run() {
-                                binding.swipeRefresh.setRefreshing(false);
-                                dialog.dismiss();
-                                updateNotification();
-                            }
-                        },
-                        25000);
     }
 
     private void updateNotification() {
