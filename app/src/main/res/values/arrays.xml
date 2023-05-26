@@ -16,9 +16,9 @@
     </string-array>
 
     <string-array name="tema_values">
-        <item>DEFAULT</item>
-        <item>LIGHT</item>
-        <item>DARK</item>
+        <item>system</item>
+        <item>light</item>
+        <item>dark</item>
     </string-array>
 
     <string-array name="language_options">
@@ -46,13 +46,13 @@
         <item>3</item>
         <item>4</item>
     </integer-array>
-    
+
     <string-array name="adelanta">
         <item>25.00 CUP</item>
         <item>50.00 CUP</item>
     </string-array>
-    
-       <string-array name="pelota">
+
+    <string-array name="pelota">
         <item>@string/title_posiciones</item>
         <item>@string/title_resultados</item>
     </string-array>
@@ -131,5 +131,5 @@
         <item>@nauta.com.cu</item>
         <item>@nauta.co.cu</item>
     </string-array>
-    
+
 </resources>

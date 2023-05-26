@@ -171,6 +171,13 @@
     <string name="title_15_min">15 MIN</string>
     <string name="title_25_min">25 MIN</string>
     <string name="title_40_min">40 MIN</string>
+    
+    <string name="subtitle_5_min">35.50 CUP</string>
+    <string name="subtitle_10_min">72.50 CUP</string>
+    <string name="subtitle_15_min">105 CUP</string>
+    <string name="subtitle_25_min">162.50 CUP</string>
+    <string name="subtitle_40_min">250 CUP</string>
+    
     <string name="title_20_sms">20 SMS</string>
     <string name="title_50_sms">50 SMS</string>
     <string name="title_90_sms">90 SMS</string>
@@ -288,7 +295,7 @@
     <string name="title_antidroga">Antidrogas</string>
     <string name="title_ambulancia">Ambulancia</string>
     <string name="title_bomberos">Bomberos</string>
-    <string name="title_policia">Policia</string>
+    <string name="title_policia">Policía</string>
     <string name="title_rescate_salvamento">Salvamento marítimo</string>
     <string name="buttom_share_qr_code">Compartir</string>
     <string name="description_code_qr">Tu código QR es privado. Si lo compartes con alguien, esa persona podrá escanearlo con la cámara de SIMple para transferirte saldo.</string>

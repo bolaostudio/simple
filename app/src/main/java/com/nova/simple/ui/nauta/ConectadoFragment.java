@@ -44,16 +44,23 @@ public class ConectadoFragment extends Fragment {
                     executor.execute(() -> disconnect());
                 });
 
+        // tiempo restante
+        conectado();
         return binding.getRoot();
     }
 
-    private void conectado(String user, String pass) {
-        /* try {
-             Map<String, Object> info = client.getConnectInformation(user, pass);
+    private void conectado() {
+        try {
+            getActivity()
+                    .runOnUiThread(
+                            () -> {
+                                String time = client.getRemainingTime();
+                                binding.loginTime.setText(time);
+                            });
 
-        } catch (LoginException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        }*/
+        }
     }
 
     private void disconnect() {

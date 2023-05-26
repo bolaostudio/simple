@@ -288,7 +288,7 @@ public class BalanceFragment extends Fragment {
                             editor.putString(
                                     "vence_mensajeria", vence_mensajeria.toString().trim());
                             editor.apply();
-                            binding.textVenceSMS.setText(vence_mensajeria);
+                            binding.textVenceMensajeria.setText(vence_mensajeria);
 
                             // --> estado bolsa diaria
                             String diaria =

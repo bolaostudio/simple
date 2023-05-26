@@ -53,7 +53,7 @@ public class AboutFragment extends Fragment {
                                 startActivity(
                                         new Intent(
                                                 Intent.ACTION_VIEW,
-                                                Uri.parse("https://t.me/Fundadora")));
+                                                Uri.parse("http://lnk.bio/roclahy")));
                             } else if (position == 1) {
                                 startActivity(
                                         new Intent(
@@ -73,13 +73,13 @@ public class AboutFragment extends Fragment {
                     startActivity(
                             new Intent(
                                     Intent.ACTION_VIEW,
-                                    Uri.parse("https://github.com/esnoova/simple/")));
+                                    Uri.parse("https://github.com/bolaostudio/simple")));
                 });
         binding.buttomTwitterSimple.setOnClickListener(
                 view -> {
                     startActivity(
                             new Intent(
-                                    Intent.ACTION_VIEW, Uri.parse("https://twitter.com/simplecu")));
+                                    Intent.ACTION_VIEW, Uri.parse("https://twitter.com/BolaoStudio")));
                 });
         binding.buttomTelegram.setOnClickListener(
                 view -> {

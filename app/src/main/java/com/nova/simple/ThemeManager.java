@@ -10,17 +10,17 @@ public class ThemeManager {
     private ThemeManager() {}
 
     public enum Mode {
-        DEFAULT,
-        DARK,
-        LIGHT
+        system,
+        dark,
+        light
     }
 
     public static void applyTheme(Mode mode) {
         switch (mode) {
-            case DARK:
+            case dark:
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                 break;
-            case LIGHT:
+            case light:
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                 break;
             default:
@@ -37,7 +37,7 @@ public class ThemeManager {
     public static void applyTheme(Context context) {
         SharedPreferences defaultSharedPreferences =
                 PreferenceManager.getDefaultSharedPreferences(context);
-        String value = defaultSharedPreferences.getString("tema_preference", Mode.DEFAULT.name());
+        String value = defaultSharedPreferences.getString("tema_preference", Mode.system.name());
         applyTheme(Mode.valueOf(value));
     }
 }

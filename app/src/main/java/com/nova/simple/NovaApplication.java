@@ -2,6 +2,7 @@ package com.nova.simple;
 
 import android.app.Application;
 import android.content.SharedPreferences;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.preference.PreferenceManager;
 import com.jesusd0897.crashreporter.model.CrashReporterHandler;
 import cu.suitetecsa.sdk.nauta.data.repository.DefaultNautaSession;

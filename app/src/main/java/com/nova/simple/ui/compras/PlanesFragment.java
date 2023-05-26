@@ -241,6 +241,7 @@ public class PlanesFragment extends Fragment {
                             getActivity(),
                             "*133*5*1*1" + Uri.encode("#"),
                             Integer.parseInt(simslot));
+                            dialog.dismiss();
                 });
 
         // negative buttom
@@ -274,6 +275,7 @@ public class PlanesFragment extends Fragment {
                             getActivity(),
                             "*133*5*2*1" + Uri.encode("#"),
                             Integer.parseInt(simslot));
+                            dialog.dismiss();
                 });
 
         // negative buttom
@@ -307,6 +309,7 @@ public class PlanesFragment extends Fragment {
                             getActivity(),
                             "*133*5*3*1" + Uri.encode("#"),
                             Integer.parseInt(simslot));
+                            dialog.dismiss();
                 });
 
         // negative buttom
@@ -340,6 +343,7 @@ public class PlanesFragment extends Fragment {
                             getActivity(),
                             "*133*1*4*1*1" + Uri.encode("#"),
                             Integer.parseInt(simslot));
+                            dialog.dismiss();
                 });
 
         // negative buttom
@@ -373,6 +377,7 @@ public class PlanesFragment extends Fragment {
                             getActivity(),
                             "*133*1*4*2*1" + Uri.encode("#"),
                             Integer.parseInt(simslot));
+                            dialog.dismiss();
                 });
 
         // negative buttom
@@ -406,6 +411,7 @@ public class PlanesFragment extends Fragment {
                             getActivity(),
                             "*133*1*4*3*1" + Uri.encode("#"),
                             Integer.parseInt(simslot));
+                            dialog.dismiss();
                 });
 
         // negative buttom
@@ -439,6 +445,7 @@ public class PlanesFragment extends Fragment {
                             getActivity(),
                             "*133*1*2*1" + Uri.encode("#"),
                             Integer.parseInt(simslot));
+                            dialog.dismiss();
                 });
 
         // negative buttom
@@ -472,6 +479,7 @@ public class PlanesFragment extends Fragment {
                             getActivity(),
                             "*133*1*3*1" + Uri.encode("#"),
                             Integer.parseInt(simslot));
+                            dialog.dismiss();
                 });
 
         // negative buttom

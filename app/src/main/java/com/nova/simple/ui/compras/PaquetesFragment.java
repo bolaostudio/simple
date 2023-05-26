@@ -97,7 +97,7 @@ public class PaquetesFragment extends Fragment {
                                         compras_50_mensajes();
                                         break;
                                     case 9:
-                                        compras_50_mensajes();
+                                        compras_90_mensajes();
                                         break;
                                     case 10:
                                         compras_120_mensajes();
@@ -127,27 +127,27 @@ public class PaquetesFragment extends Fragment {
         item.add(
                 new GridView(
                         getString(R.string.title_5_min),
-                        getString(R.string.title_minutos),
+                        getString(R.string.subtitle_5_min),
                         R.drawable.ic_llamadas_unfilled_24px));
         item.add(
                 new GridView(
                         getString(R.string.title_10_min),
-                        getString(R.string.title_minutos),
+                        getString(R.string.subtitle_10_min),
                         R.drawable.ic_llamadas_unfilled_24px));
         item.add(
                 new GridView(
                         getString(R.string.title_15_min),
-                        getString(R.string.title_minutos),
+                        getString(R.string.subtitle_15_min),
                         R.drawable.ic_llamadas_unfilled_24px));
         item.add(
                 new GridView(
                         getString(R.string.title_25_min),
-                        getString(R.string.title_minutos),
+                        getString(R.string.subtitle_25_min),
                         R.drawable.ic_llamadas_unfilled_24px));
         item.add(
                 new GridView(
                         getString(R.string.title_40_min),
-                        getString(R.string.title_minutos),
+                        getString(R.string.subtitle_40_min),
                         R.drawable.ic_llamadas_unfilled_24px));
 
         // mensajes
@@ -192,6 +192,7 @@ public class PaquetesFragment extends Fragment {
                             getActivity(),
                             "*133*3*1*1" + Uri.encode("#"),
                             Integer.parseInt(simslot));
+                    dialog.dismiss();
                 });
 
         // negative buttom
@@ -220,6 +221,7 @@ public class PaquetesFragment extends Fragment {
                             getActivity(),
                             "*133*3*2*1" + Uri.encode("#"),
                             Integer.parseInt(simslot));
+                    dialog.dismiss();
                 });
 
         // negative buttom
@@ -248,6 +250,7 @@ public class PaquetesFragment extends Fragment {
                             getActivity(),
                             "*133*3*3*1" + Uri.encode("#"),
                             Integer.parseInt(simslot));
+                    dialog.dismiss();
                 });
 
         // negative buttom
@@ -276,6 +279,7 @@ public class PaquetesFragment extends Fragment {
                             getActivity(),
                             "*133*3*4*1" + Uri.encode("#"),
                             Integer.parseInt(simslot));
+                    dialog.dismiss();
                 });
 
         // negative buttom
@@ -304,6 +308,7 @@ public class PaquetesFragment extends Fragment {
                             getActivity(),
                             "*133*3*5*1" + Uri.encode("#"),
                             Integer.parseInt(simslot));
+                    dialog.dismiss();
                 });
 
         // negative buttom
@@ -333,6 +338,7 @@ public class PaquetesFragment extends Fragment {
                             getActivity(),
                             "*133*2*1*1" + Uri.encode("#"),
                             Integer.parseInt(simslot));
+                    dialog.dismiss();
                 });
 
         // negative buttom
@@ -361,6 +367,7 @@ public class PaquetesFragment extends Fragment {
                             getActivity(),
                             "*133*2*2*1" + Uri.encode("#"),
                             Integer.parseInt(simslot));
+                    dialog.dismiss();
                 });
 
         // negative buttom
@@ -389,6 +396,7 @@ public class PaquetesFragment extends Fragment {
                             getActivity(),
                             "*133*2*3*1" + Uri.encode("#"),
                             Integer.parseInt(simslot));
+                    dialog.dismiss();
                 });
 
         // negative buttom
@@ -417,6 +425,7 @@ public class PaquetesFragment extends Fragment {
                             getActivity(),
                             "*133*2*4*1" + Uri.encode("#"),
                             Integer.parseInt(simslot));
+                    dialog.dismiss();
                 });
 
         // negative buttom

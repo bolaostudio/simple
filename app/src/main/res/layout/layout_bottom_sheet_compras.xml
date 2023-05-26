@@ -93,7 +93,7 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:layout_margin="4dp"
-            style="@style/Widget.Material3.Button.TextButton.Icon"
+            style="?attr/materialButtonOutlinedStyle"
             android:id="@+id/buttomCancel"
             android:text="@string/buttom_cancel" />
 
@@ -101,7 +101,7 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:layout_margin="4dp"
-            style="@style/Widget.Material3.Button.TextButton.Icon"
+            style="@style/Widget.Material3.Button"
             android:id="@+id/buttomBuy"
             android:text="@string/buttom_buy" />
 

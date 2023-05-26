@@ -11,10 +11,10 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ShareCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
@@ -39,6 +39,7 @@ import com.nova.simple.perfil.PerfilActivity;
 import com.nova.simple.perfil.SaveInage;
 import com.nova.simple.services.FloatingWindow;
 
+import com.nova.simple.ui.settings.SettingsFragment;
 import java.io.File;
 import java.util.Calendar;
 import java.util.Locale;
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity
     AppBarConfiguration appBarConfiguration;
 
     private Locale locale = null;
+    private BottomNavigationView navView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +67,7 @@ public class MainActivity extends AppCompatActivity
         getWindow().setNavigationBarColor(SurfaceColors.SURFACE_2.getColor(this));
         //   getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
-        BottomNavigationView navView = findViewById(R.id.bottom_nav_view);
+        //  navView = findViewById(R.id.bottom_nav_view);
         DrawerLayout drawerLayout = findViewById(R.id.drawerLayout);
 
         // hide balances API 26 inferior
@@ -276,6 +278,10 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    public void onPreferenceChanged() {
+        invalidateOptionsMenu();
+    }
+
     @Override
     public void onBackPressed() {
         if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
@@ -283,5 +289,14 @@ public class MainActivity extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        int night = AppCompatDelegate.getDefaultNightMode();
+        AppCompatDelegate.setDefaultNightMode(night);
+        navController.popBackStack(R.id.navigation_home, false);
+        recreate();
     }
 }

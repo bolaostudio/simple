@@ -1,77 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_height="wrap_content"
-    android:layout_width="match_parent"
-    android:padding="16dp"
-    android:orientation="vertical">
+     xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     android:layout_height="wrap_content"
+     android:layout_width="match_parent"
+     android:padding="16dp"
+     android:orientation="vertical">
 
     <TextView
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:textAppearance="?textAppearanceHeadlineMedium"
-        android:id="@+id/textTitle"
-        android:layout_gravity="center_horizontal"/>
+         android:layout_height="wrap_content"
+         android:layout_width="wrap_content"
+         android:textAppearance="?textAppearanceHeadlineMedium"
+         android:id="@+id/textTitle"
+         android:layout_gravity="center_horizontal" />
 
     <TextView
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:background="@drawable/text_rounded_background"
-        android:textAppearance="?textAppearanceBodySmall"
-        android:padding="6dp"
-        android:id="@+id/textPrecio"
-        android:layout_gravity="center_horizontal"/>
+         android:layout_height="wrap_content"
+         android:layout_width="wrap_content"
+         android:background="@drawable/text_rounded_background"
+         android:textAppearance="?textAppearanceBodySmall"
+         android:padding="6dp"
+         android:id="@+id/textPrecio"
+         android:layout_gravity="center_horizontal" />
 
     <TextView
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:textAppearance="?textAppearanceBodyMedium"
-        android:padding="5dp"
-        android:id="@+id/textMessage"/>
+         android:layout_height="wrap_content"
+         android:layout_width="wrap_content"
+         android:textAppearance="?textAppearanceBodyMedium"
+         android:padding="5dp"
+         android:id="@+id/textMessage" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        app:boxCornerRadiusBottomEnd="30dp"
-        app:boxCornerRadiusTopStart="30dp"
-        app:boxStrokeWidth="0dp"
-        app:boxCornerRadiusTopEnd="30dp"
-        android:hint="@string/hint_amigo_numero"
-        app:boxCornerRadiusBottomStart="30dp"
-        app:boxStrokeWidthFocused="0dp"
-        style="@style/Widget.Material3.TextInputLayout.FilledBox"
-        app:errorEnabled="true"
-        android:id="@+id/inputAmigo">
+         android:layout_height="wrap_content"
+         android:layout_width="match_parent"
+         app:boxCornerRadiusTopEnd="30dp"
+         android:hint="@string/hint_amigo_numero"
+         app:boxCornerRadiusBottomStart="30dp"
+         app:boxStrokeWidthFocused="0dp"
+         app:boxCornerRadiusBottomEnd="30dp"
+         style="@style/Widget.Material3.TextInputLayout.FilledBox"
+         app:boxCornerRadiusTopStart="30dp"
+         app:errorEnabled="true"
+         app:boxStrokeWidth="0dp"
+         android:id="@+id/inputAmigo">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:id="@+id/editTextAmigo"/>
+             android:layout_height="wrap_content"
+             android:layout_width="match_parent"
+             android:id="@+id/editTextAmigo" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:gravity="right"
-        android:orientation="horizontal">
+         android:layout_height="wrap_content"
+         android:layout_width="match_parent"
+         android:gravity="right"
+         android:orientation="horizontal">
 
         <Button
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_margin="4dp"
-            style="@style/Widget.Material3.Button.TextButton.Icon"
-            android:id="@+id/buttomCancel"
-            android:text="@string/buttom_cancel"/>
+             android:layout_height="wrap_content"
+             android:layout_width="wrap_content"
+             android:layout_margin="4dp"
+             style="?attr/materialButtonOutlinedStyle"
+             android:id="@+id/buttomCancel"
+             android:text="@string/buttom_cancel" />
 
         <Button
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_margin="4dp"
-            style="@style/Widget.Material3.Button.TextButton.Icon"
-            android:id="@+id/buttomBuy"
-            android:text="@string/buttom_positive"/>
+             android:layout_height="wrap_content"
+             android:layout_width="wrap_content"
+             android:layout_margin="4dp"
+             style="@style/Widget.Material3.Button"
+             android:id="@+id/buttomBuy"
+             android:text="@string/buttom_positive" />
 
     </LinearLayout>
 

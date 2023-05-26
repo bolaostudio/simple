@@ -54,7 +54,7 @@
             android:title="@string/preference_title_tema"
             android:entries="@array/tema_options"
             android:entryValues="@array/tema_values"
-            android:defaultValue="DEFAULT"
+            android:defaultValue="system"
             android:dialogTitle="@string/preference_title_tema"
             android:summary="%s" />
 
