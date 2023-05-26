@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
@@ -147,7 +149,9 @@ public class BalanceFragment extends Fragment {
         binding.progressPaquete.setProgress(porcentage);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void update_balances() {
+
         TelephonyManager telephonyManager =
                 (TelephonyManager) getActivity().getSystemService(Context.TELEPHONY_SERVICE);
 
@@ -439,7 +443,7 @@ public class BalanceFragment extends Fragment {
         } else {
             telephonyManager.sendUssdRequest("*222#", saldo, new Handler(Looper.getMainLooper()));
         }
-        
+
         new Handler(Looper.getMainLooper())
                 .postDelayed(
                         new Runnable() {
