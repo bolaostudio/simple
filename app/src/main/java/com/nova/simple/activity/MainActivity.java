@@ -9,10 +9,14 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.text.Html;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ShareCompat;
@@ -26,6 +30,7 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.preference.PreferenceManager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.elevation.SurfaceColors;
 import com.google.android.material.navigation.NavigationView;
 import com.jesusd0897.crashreporter.model.ReportListener;
@@ -34,11 +39,15 @@ import com.jesusd0897.crashreporter.util.UtilKt;
 import com.nova.simple.BuildConfig;
 import com.nova.simple.R;
 import com.nova.simple.databinding.ActivityMainBinding;
+import com.nova.simple.databinding.LayoutUpdateAlertDialogBinding;
 import com.nova.simple.databinding.NavHeaderMainBinding;
 import com.nova.simple.perfil.PerfilActivity;
 import com.nova.simple.perfil.SaveInage;
 import com.nova.simple.services.FloatingWindow;
 
+import cu.uci.apklisupdate.ApklisUpdate;
+import cu.uci.apklisupdate.UpdateCallback;
+import cu.uci.apklisupdate.model.AppUpdateInfo;
 import java.io.File;
 import java.util.Calendar;
 import java.util.Locale;
@@ -53,6 +62,9 @@ public class MainActivity extends AppCompatActivity
     private Locale locale = null;
     private BottomNavigationView navView;
 
+    private LayoutUpdateAlertDialogBinding dialogView;
+    private AlertDialog mDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +73,7 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(binding.toolbar);
         String idioma = getLocaleFromPreferences();
         setLocale(idioma);
+        hasAppUpdate();
 
         // navigationBarColor SurfaceColor
         getWindow().setNavigationBarColor(SurfaceColors.SURFACE_2.getColor(this));
@@ -142,7 +155,7 @@ public class MainActivity extends AppCompatActivity
                         Intent send = new Intent("android.intent.action.SENDTO");
                         send.putExtra(
                                 "android.intent.extra.EMAIL",
-                                new String[] {"simpleapp@zohomail.com"});
+                                new String[] {"bolaostudio@proton.me"});
                         send.putExtra("android.intent.extra.SUBJECT", "BUG/SIMPLE");
                         send.putExtra("android.intent.extra.TEXT", appVersion + "\n" + errorTrace);
                         send.setType("text/plain");
@@ -263,6 +276,53 @@ public class MainActivity extends AppCompatActivity
         NavigationUI.setupWithNavController(binding.navView, navController);
     }
 
+    private void hasAppUpdate() {
+        ApklisUpdate.INSTANCE.hasAppUpdate(
+                this,
+                new UpdateCallback() {
+                    @Override
+                    public void onNewUpdate(AppUpdateInfo appUpdateInfo) {
+                        dialogView =
+                                LayoutUpdateAlertDialogBinding.inflate(
+                                        LayoutInflater.from(MainActivity.this));
+                        dialogView.textVersion.setText(
+                                appUpdateInfo.getLast_release().getVersion_name());
+                        dialogView.textChangelog.setText(
+                                Html.fromHtml(appUpdateInfo.getLast_release().getChangelog()));
+
+                        MaterialAlertDialogBuilder builder =
+                                new MaterialAlertDialogBuilder(MainActivity.this)
+                                        .setView(dialogView.getRoot())
+                                        .setPositiveButton(
+                                                "Aceptar",
+                                                (dialog, which) -> {
+                                                    startActivity(
+                                                            new Intent(
+                                                                    Intent.ACTION_VIEW,
+                                                                    Uri.parse(
+                                                                            "https://apklis.cu/application/com.nova.simple")));
+                                                })
+                                        .setNegativeButton(
+                                                "Cancelar",
+                                                (dialog, which) -> {
+                                                    mDialog.dismiss();
+                                                });
+                        mDialog = builder.create();
+                        mDialog.show();
+                    }
+
+                    @Override
+                    public void onOldUpdate(AppUpdateInfo appUpdateInfo) {
+                        Log.d("MainActivity", "onOldUpdate $appUpdateInfo");
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        e.printStackTrace();
+                    }
+                });
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -277,10 +337,6 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    public void onPreferenceChanged() {
-        invalidateOptionsMenu();
-    }
-
     @Override
     public void onBackPressed() {
         if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
@@ -288,14 +344,5 @@ public class MainActivity extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
-    }
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        int night = AppCompatDelegate.getDefaultNightMode();
-        AppCompatDelegate.setDefaultNightMode(night);
-        navController.popBackStack(R.id.navigation_home, false);
-        recreate();
     }
 }

@@ -6,15 +6,13 @@ android {
     namespace 'com.nova.simple'
     compileSdk 33
     buildToolsVersion "33.0.0"
-    lint {
-        baseline = file("lint-baseline.xml")
-}
+    
     defaultConfig {
         applicationId "com.nova.simple"
         minSdk 23
         targetSdk 33
-        versionCode 6
-        versionName "2.0.5-beta.interna"
+        versionCode 7
+        versionName "3.0.0-beta"
         
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -37,7 +35,6 @@ android {
 }
 
 dependencies {
-
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
@@ -54,6 +51,8 @@ dependencies {
     implementation('com.journeyapps:zxing-android-embedded:4.3.0') { transitive = false }
     implementation 'com.google.zxing:core:3.3.0'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+    implementation 'com.github.Z17-CU:apklisupdate:1.4'	
+    
     
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

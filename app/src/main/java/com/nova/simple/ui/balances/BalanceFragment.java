@@ -32,6 +32,8 @@ import com.nova.simple.databinding.LayoutProgressDialogBinding;
 import com.nova.simple.receiver.BalanceNotification;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @TargetApi(26)
 public class BalanceFragment extends Fragment {
@@ -62,19 +64,8 @@ public class BalanceFragment extends Fragment {
                         new IntentFilter("android.intent.action.ACTION_PREFERENCE_CHANGED"));
 
         // update
-        binding.swipeRefresh.setColorSchemeResources(R.color.colorPrimary);
-        binding.swipeRefresh.setProgressBackgroundColorSchemeColor(
-                SurfaceColors.SURFACE_5.getColor(getActivity()));
-        binding.swipeRefresh.setOnRefreshListener(
-                () -> {
-                    if (ActivityCompat.checkSelfPermission(
-                                    getContext(), Manifest.permission.CALL_PHONE)
-                            != PackageManager.PERMISSION_GRANTED) {
-                        binding.swipeRefresh.setRefreshing(false);
-                        ActivityCompat.requestPermissions(
-                                getActivity(), new String[] {Manifest.permission.CALL_PHONE}, 20);
-                        return;
-                    }
+        binding.fab.setOnClickListener(
+                view -> {
                     dialogProgress =
                             LayoutProgressDialogBinding.inflate(LayoutInflater.from(getActivity()));
                     dialog =
@@ -126,10 +117,10 @@ public class BalanceFragment extends Fragment {
                             // Obtener el nuevo valor de "venceDat"
                             String day =
                                     sp_sim.getString("venceDat", "0 días").replace(" días", "");
-                            try {
+                            if (day.matches(".*\\d+.*")) {
                                 updateProgressBar(day);
-                            } catch (Exception e) {
-                                e.printStackTrace();
+                            } else {
+                                binding.progressPaquete.setProgress(100);
                             }
                         }
                     }
@@ -380,7 +371,7 @@ public class BalanceFragment extends Fragment {
                                                 .replaceFirst("(.*)dispone de", "")
                                                 .replaceFirst("validos(.*)", "")
                                                 .replaceFirst("Usted debe adquirir(.*)", "0 SMS")
-                                                .replace("no activos", "");
+                                                .replace("no activos.", "");
                                 editor.putString("sms", mensajes.toString().trim());
                                 editor.apply();
                                 binding.textMensajes.setText(mensajes);
@@ -394,6 +385,7 @@ public class BalanceFragment extends Fragment {
                                                 .replaceFirst("Para una nueva(.*)", "")
                                                 .replaceFirst("(.*)validos por", "")
                                                 .replace("1 dia.", "24h")
+                                                .replace("(.*)no activos.", "30 días")
                                                 .replace("dias", getString(R.string.dias));
                                 editor.putString(
                                         "vence_mensajes", vence_mensajes.toString().trim());
@@ -473,7 +465,7 @@ public class BalanceFragment extends Fragment {
                                     }
                                 }
                             },
-                            4000);
+                            5000);
             new Handler(Looper.getMainLooper())
                     .postDelayed(
                             new Runnable() {
@@ -494,7 +486,7 @@ public class BalanceFragment extends Fragment {
                                     }
                                 }
                             },
-                            8000);
+                            10000);
 
             new Handler(Looper.getMainLooper())
                     .postDelayed(
@@ -517,7 +509,7 @@ public class BalanceFragment extends Fragment {
                                     }
                                 }
                             },
-                            16000);
+                            15000);
             new Handler(Looper.getMainLooper())
                     .postDelayed(
                             new Runnable() {
@@ -539,7 +531,7 @@ public class BalanceFragment extends Fragment {
                                     }
                                 }
                             },
-                            24000);
+                            20000);
 
             // stop refresh
             new Handler(Looper.getMainLooper())
@@ -547,7 +539,6 @@ public class BalanceFragment extends Fragment {
                             new Runnable() {
                                 @Override
                                 public void run() {
-                                    binding.swipeRefresh.setRefreshing(false);
                                     dialog.dismiss();
                                     updateNotification();
                                 }
@@ -596,7 +587,7 @@ public class BalanceFragment extends Fragment {
     public void onResume() {
         super.onResume();
         String dias = sp_sim.getString("venceDat", "0 días").replace(" días", "");
-        try {
+        if (dias.matches(".*\\d+.*")) {
             int remainingDays = Integer.parseInt(dias);
             Calendar calendar = Calendar.getInstance();
             Date currentDate = calendar.getTime();
@@ -609,8 +600,8 @@ public class BalanceFragment extends Fragment {
             // calcular el porcentaje
             int porcentage = (int) ((daysRemaining / (float) totalDias) * 100);
             binding.progressPaquete.setProgress(porcentage);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } else {
+            binding.progressPaquete.setProgress(100);
         }
     }
 }
