@@ -5,6 +5,20 @@ Simple es una aplicación para android que se encarga de facilitar la gestion de
 ### En que se diferencia 
 Es ligera, útil y moderna, además de estar en constante desarrollo es una de las primeras aplicaciones en tener soporte para Material You en Cuba
 
+### Algunas Funciones
+- [x] Recargar, transferir y solicitar saldo.
+- [x] Consultar sus saldos.
+- [x] Medidor de transferencia de datos.
+- [x] Consultar sus balances y guardar su última consulta.
+- [x] Conexión al Portal Usuario.
+- [ ] Login (aún por implementar)
+- [ ] Protección de la aplicación por huella o código.
+- [ ] Widget con sus balances.
+- [ ] Guardado y autocomplrtado de algunos de sus datos para futuro uso.
+- [x] Gestion de planes y paquetes.
+
+
+
 ### Gracias a:
 - [@lesclaz](https://t.me/lesclaz) por crear [suitetecsa](https://github.com/suitetecsa/)
 - [@roclahy](https://twitter.com/roclahy) por el apoyo incondicional 
