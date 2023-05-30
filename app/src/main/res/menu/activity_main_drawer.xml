@@ -28,6 +28,11 @@
 
         <menu>
             <item
+                android:id="@+id/activity_privacidad"
+                android:icon="@drawable/ic_politicas_privacidad_24px"
+                android:title="@string/title_privacidad" />
+
+            <item
                 android:id="@+id/activity_settings"
                 android:icon="@drawable/ic_settings_24px"
                 android:title="@string/title_settings" />

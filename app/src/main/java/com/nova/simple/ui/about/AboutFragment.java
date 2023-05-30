@@ -4,7 +4,11 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.nova.simple.BuildConfig;
@@ -30,6 +34,7 @@ public class AboutFragment extends Fragment {
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentAboutBinding.inflate(inflater, container, false);
+        setHasOptionsMenu(true);
 
         // hide bottomnavigationview
         nav = Objects.requireNonNull(getActivity()).findViewById(R.id.bottom_nav_view);
@@ -66,6 +71,11 @@ public class AboutFragment extends Fragment {
                                                 Uri.parse("http://t.me/haroldadan")));
                             }
                         }));
+        // donar
+        binding.cardDonar.setOnClickListener(
+                view -> {
+                    Toast.makeText(getActivity(), "En desarrollo...", Toast.LENGTH_LONG).show();
+                });
 
         // social app
         binding.buttomGithub.setOnClickListener(
@@ -79,7 +89,8 @@ public class AboutFragment extends Fragment {
                 view -> {
                     startActivity(
                             new Intent(
-                                    Intent.ACTION_VIEW, Uri.parse("https://twitter.com/BolaoStudio")));
+                                    Intent.ACTION_VIEW,
+                                    Uri.parse("https://twitter.com/BolaoStudio")));
                 });
         binding.buttomTelegram.setOnClickListener(
                 view -> {
@@ -124,5 +135,32 @@ public class AboutFragment extends Fragment {
         super.onDestroyView();
         binding = null;
         nav.setVisibility(View.VISIBLE);
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.about_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+        MenuItem menuItem = menu.findItem(R.id.licence);
+        MenuItem menTerm = menu.findItem(R.id.politicas);
+        menuItem.setVisible(true);
+        menTerm.setVisible(true);
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.licence:
+                Toast.makeText(getActivity(), "En desarrollo...", Toast.LENGTH_LONG).show();
+                break;
+            case R.id.politicas:
+                Toast.makeText(getActivity(), "En desarrollo...", Toast.LENGTH_LONG).show();
+                break;
+            default:
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

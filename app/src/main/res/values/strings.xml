@@ -10,6 +10,7 @@
     <string name="title_entumovil">entuMóvil</string>
     <string name="title_telepuntos">Telepuntos</string>
     <string name="title_settings">Configuración</string>
+    <string name="title_privacidad">Políticas de Privacidad</string>
     <string name="title_about">Acerca de</string>
     <string name="title_invite">Invitar amigo</string>
     <string name="title_login">Iniciar Sesión</string>
@@ -240,7 +241,7 @@
     <string name="subtitle_perfil_numero">Inserte su número de teléfono</string>
     <string name="subtitle_perfil_password">Contraseña de transferencia de saldo</string>
     <string name="subtitle_perfil_email">Guarde su cuenta nauta para usarla después</string>
-    <string name="saludo_dia">¡Buen días!</string>
+    <string name="saludo_dia">¡Buenos días!</string>
     <string name="saludo_tarde">¡Buenas tardes!</string>
     <string name="saludo_noche">¡Buenas noches!</string>
     <string name="error_save_image">Error al guardar imagen</string>
@@ -332,6 +333,6 @@
     <string name="title_baja">Darse de baja</string>
     <string name="title_posiciones">Posiciones</string>
     <string name="title_resultados">Resultados</string>
-    
-    
+    <string name="warning_login">* Esta opción está en proceso de desarrollo, puede no funcionar totalmente o parcialmente</string>
+    <string name="summary_notification_not_comp">Lo siento, pero parece que la versión de Android que está utilizando actualmente no es compatible con esta opción.</string>
 </resources>

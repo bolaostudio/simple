@@ -53,7 +53,7 @@ public class SettingsActivity extends AppCompatActivity {
                     .replace(R.id.frameLayout, new SettingFragment())
                     .commit();
         }
-        
+
         // permiso de notificación
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -135,6 +135,13 @@ public class SettingsActivity extends AppCompatActivity {
 
             // notification
             SwitchPreferenceCompat notification = findPreference("notifi");
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                notification.setEnabled(true);
+            } else {
+                notification.setEnabled(false);
+                notification.setSummary(
+                        getActivity().getString(R.string.summary_notification_not_comp));
+            }
             notification.setOnPreferenceChangeListener(
                     (preference, newValue) -> {
                         boolean isChecked = (Boolean) newValue;

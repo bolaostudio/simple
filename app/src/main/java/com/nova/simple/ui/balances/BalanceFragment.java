@@ -441,6 +441,7 @@ public class BalanceFragment extends Fragment {
                 ActivityCompat.requestPermissions(
                         getActivity(), new String[] {Manifest.permission.CALL_PHONE}, 20);
             } else {
+                dialogProgress.textProgress.setText("Actualizando saldo...");
                 telephonyManager.sendUssdRequest(
                         "*222#", saldo, new Handler(Looper.getMainLooper()));
             }
@@ -458,6 +459,8 @@ public class BalanceFragment extends Fragment {
                                                 new String[] {Manifest.permission.CALL_PHONE},
                                                 20);
                                     } else {
+                                        dialogProgress.textProgress.setText(
+                                                "Actualizando datos...");
                                         telephonyManager.sendUssdRequest(
                                                 "*222*328#",
                                                 datos,
@@ -479,6 +482,8 @@ public class BalanceFragment extends Fragment {
                                                 new String[] {Manifest.permission.CALL_PHONE},
                                                 20);
                                     } else {
+                                        dialogProgress.textProgress.setText(
+                                                "Actualizando bonos...");
                                         telephonyManager.sendUssdRequest(
                                                 "*222*266#",
                                                 bonos,
@@ -502,6 +507,8 @@ public class BalanceFragment extends Fragment {
                                                 new String[] {Manifest.permission.CALL_PHONE},
                                                 20);
                                     } else {
+                                        dialogProgress.textProgress.setText(
+                                                "Actualizando mensajes...");
                                         telephonyManager.sendUssdRequest(
                                                 "*222*767#",
                                                 mensajes,
@@ -524,6 +531,8 @@ public class BalanceFragment extends Fragment {
                                                 new String[] {Manifest.permission.CALL_PHONE},
                                                 20);
                                     } else {
+                                        dialogProgress.textProgress.setText(
+                                                "Actualizando minutos...");
                                         telephonyManager.sendUssdRequest(
                                                 "*222*869#",
                                                 minutos,

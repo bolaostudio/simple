@@ -1,6 +1,8 @@
 package com.nova.simple.ui.llamadas;
 
+import android.Manifest;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,6 +15,8 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -68,12 +72,11 @@ public class LlamadasFragment extends Fragment {
                             public void onClick(View view, int position) {
                                 switch (position) {
                                     case 0:
-                                        pickContactAsterisc.launch(null);
+                                        asterisco();
                                         break;
                                     case 1:
-                                        pickContactPrivado.launch(null);
+                                        privado();
                                         break;
-
                                     case 2:
                                         // utiles
                                         break;
@@ -179,6 +182,38 @@ public class LlamadasFragment extends Fragment {
                         getString(R.string.title_rescate_salvamento),
                         null,
                         R.drawable.ic_salvamento_maritimo_24px));
+    }
+
+    private void asterisco() {
+        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_CONTACTS)
+                        != PackageManager.PERMISSION_GRANTED
+                || ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CALL_PHONE)
+                        != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(
+                    getActivity(),
+                    new String[] {
+                        Manifest.permission.READ_CONTACTS, Manifest.permission.CALL_PHONE
+                    },
+                    20);
+        } else {
+            pickContactAsterisc.launch(null);
+        }
+    }
+
+    private void privado() {
+        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_CONTACTS)
+                        != PackageManager.PERMISSION_GRANTED
+                || ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CALL_PHONE)
+                        != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(
+                    getActivity(),
+                    new String[] {
+                        Manifest.permission.READ_CONTACTS, Manifest.permission.CALL_PHONE
+                    },
+                    20);
+        } else {
+            pickContactPrivado.launch(null);
+        }
     }
 
     @Override

@@ -206,7 +206,7 @@ public class FloatingWindow extends Service {
                         .setContentText(
                                 getString(R.string.app_name)
                                         + " se está ejecutando en segundo plano")
-                        .setSmallIcon(R.drawable.ic_activa_amigo_24px);
+                        .setSmallIcon(R.drawable.ic_stat_logo_app);
         int NOTIFICATION_ID = 1;
         startForeground(NOTIFICATION_ID, builder.build());
         handler.post(runnable);

@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -234,6 +235,9 @@ public class MainActivity extends AppCompatActivity
                 return true;
             case R.id.navigation_telepuntos:
                 openGoogleMap();
+                return true;
+            case R.id.activity_privacidad:
+                Toast.makeText(this, "Proximamente...", Toast.LENGTH_LONG).show();
                 return true;
             case R.id.activity_settings:
                 navController.navigate(R.id.nav_settings);
