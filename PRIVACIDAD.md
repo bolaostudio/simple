@@ -1,3 +1,5 @@
+## Políticas de Privacidad 
+
 Bolao Studio creó la aplicación SIMple como una aplicación gratis. Éste SERVICIO es proporcionado por Bolao Studio sin costo alguno y está destinado a ser usado tal cual.
 
 Éste apartado se utiliza para informar a los usuarios de la aplicación sobre nuestras políticas con la recopilación, el uso y la divulgación de información personal si alguien decide utilizar nuestro Servicio, la aplicación de Bolao Studio.
