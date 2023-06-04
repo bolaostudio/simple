@@ -111,11 +111,11 @@ public class LoginFragment extends Fragment {
             client.connect();
 
             // TODO: Cargar información cuando hace login
-            getActivity()
+          /*  getActivity()
                     .runOnUiThread(
                             () -> {
                                 navigate.navigate(R.id.nav_nauta_conectado);
-                            });
+                            });*/
         } catch (Exception e) {
             e.printStackTrace();
             errorMessage = e.getMessage();

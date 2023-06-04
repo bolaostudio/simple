@@ -237,7 +237,9 @@ public class MainActivity extends AppCompatActivity
                 openGoogleMap();
                 return true;
             case R.id.activity_privacidad:
-                Toast.makeText(this, "Proximamente...", Toast.LENGTH_LONG).show();
+                startActivity(
+                        new Intent(
+                                Intent.ACTION_VIEW, Uri.parse(getString(R.string.link_politicas))));
                 return true;
             case R.id.activity_settings:
                 navController.navigate(R.id.nav_settings);

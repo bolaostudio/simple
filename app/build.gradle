@@ -11,8 +11,8 @@ android {
         applicationId "com.nova.simple"
         minSdk 23
         targetSdk 33
-        versionCode 7
-        versionName "3.0.1-beta"
+        versionCode 8
+        versionName "3.0.2-beta.pública"
         
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.TextView;
 import androidx.preference.PreferenceManager;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.elevation.SurfaceColors;
 import com.nova.simple.R;
@@ -32,10 +33,11 @@ public class NovaEditTextPreference extends EditTextPreference {
 
     @Override
     public void onClick() {
-        BottomSheetDialog dialog = new BottomSheetDialog(getContext());
+
         View view =
                 LayoutInflater.from(getContext())
                         .inflate(R.layout.layout_nova_edit_text_preference, null);
+        BottomSheetDialog dialog = new BottomSheetDialog(getContext());
         dialog.setContentView(view);
         dialog.getWindow().setNavigationBarColor(SurfaceColors.SURFACE_1.getColor(getContext()));
 

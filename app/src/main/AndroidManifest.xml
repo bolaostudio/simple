@@ -15,6 +15,7 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.BIND_QUICK_SETTINGS_TILE" />
     <application
         android:allowBackup="true"
         android:name=".NovaApplication"
@@ -60,10 +61,10 @@
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:screenOrientation="portrait"
             tools:replace="screenOrientation" />
-        
         <activity
             android:name="com.nova.simple.perfil.PerfilActivity"
             android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"
             android:exported="true" />
         <service android:name=".services.FloatingWindow" />
         <receiver
@@ -76,6 +77,16 @@
                     android:scheme="package" />
             </intent-filter>
         </receiver>
+        <service
+            android:name="com.nova.simple.services.ActionService"
+            android:icon="@drawable/ic_stat_logo_app"
+            android:label="@string/app_name"
+            android:exported="true"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

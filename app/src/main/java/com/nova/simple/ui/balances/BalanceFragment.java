@@ -17,23 +17,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import com.google.android.material.elevation.SurfaceColors;
 import com.nova.simple.R;
 import com.nova.simple.databinding.FragmentBalanceBinding;
 import com.nova.simple.databinding.LayoutProgressDialogBinding;
-
 import com.nova.simple.receiver.BalanceNotification;
+
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.Locale;
 
 @TargetApi(26)
 public class BalanceFragment extends Fragment {
@@ -45,7 +43,7 @@ public class BalanceFragment extends Fragment {
 
     private LayoutProgressDialogBinding dialogProgress;
     private AlertDialog dialog;
-    SharedPreferences sp_sim;
+    SharedPreferences sp_sim, balance;
 
     @Override
     public View onCreateView(
@@ -55,7 +53,6 @@ public class BalanceFragment extends Fragment {
         // SharedPreference select sim
         sp_sim = PreferenceManager.getDefaultSharedPreferences(getContext());
         String simSlot = sp_sim.getString("sim_preference", "0");
-        editor = sp_sim.edit();
 
         BalanceNotification receiver = new BalanceNotification();
         getActivity()
@@ -79,69 +76,88 @@ public class BalanceFragment extends Fragment {
                     }
                 });
 
-        binding.textSaldo.setText(sp_sim.getString("saldo", "0.00 CUP"));
-        binding.textVenceSaldo.setText(sp_sim.getString("vence_saldo", "Expira: 00/00/00"));
+        // guardar datos
+        balance = PreferenceManager.getDefaultSharedPreferences(getContext());
+        editor = balance.edit();
+        binding.textSaldo.setText(balance.getString("saldo", "0.00 CUP"));
+        binding.textVenceSaldo.setText(balance.getString("vence_saldo", "Expira: 00/00/00"));
 
-        binding.textPaquete.setText(sp_sim.getString("paquete", "0 MB"));
-        binding.textPaqueteLte.setText(sp_sim.getString("lte", "0 MB"));
-        binding.textPaqueteNacional.setText(sp_sim.getString("nacional", "0 MB"));
-        binding.textVencePaquetes.setText(sp_sim.getString("venceDat", " 0 días"));
-        binding.textTarifa.setText(sp_sim.getString("tarifa", "Tarifa no activa"));
+        binding.textPaquete.setText(balance.getString("paquete", "0 MB"));
+        binding.textPaqueteLte.setText(balance.getString("lte", "0 MB"));
+        binding.textPaqueteNacional.setText(balance.getString("nacional", "0 MB"));
+        binding.textPromociones.setText(balance.getString("promo", "Sin bonos promocionales"));
+        binding.textVencePaquetes.setText(balance.getString("venceDat", " 0 días"));
+        binding.textTarifa.setText(balance.getString("tarifa", "Tarifa no activa"));
 
         // minutos mensajes y vencimiento
-        binding.textMinutos.setText(sp_sim.getString("min", "00:00:00"));
-        binding.textMensajes.setText(sp_sim.getString("sms", "0 SMS"));
-        binding.textVenceSMS.setText(sp_sim.getString("vence_mensajes", "0 días"));
+        binding.textMinutos.setText(balance.getString("min", "00:00:00"));
+        binding.textMensajes.setText(balance.getString("sms", "0 SMS"));
+        binding.textVenceSMS.setText(balance.getString("vence_mensajes", "0 días"));
 
         // bolsa de mensajeria y diaria
-        binding.textDiaria.setText(sp_sim.getString("diaria", "0 MB"));
-        binding.textVenceDiaria.setText(sp_sim.getString("venceDiaria", "0 horas"));
-        binding.textMensajeria.setText(sp_sim.getString("mensajeria", "0 MB"));
-        binding.textVenceMensajeria.setText(sp_sim.getString("vence_mensajeria", "0 días"));
+        binding.textDiaria.setText(balance.getString("diaria", "0 MB"));
+        binding.textVenceDiaria.setText(balance.getString("venceDiaria", "0 horas"));
+        binding.textMensajeria.setText(balance.getString("mensajeria", "0 MB"));
+        binding.textVenceMensajeria.setText(balance.getString("vence_mensajeria", "0 días"));
 
+        // hora
+        binding.textHora.setText(balance.getString("h", "Actualizado\n00:00"));
         // progress bar total dias en paquetes
-        String day = sp_sim.getString("venceDat", "0 días").replace(" días", "");
-        try {
-            updateProgressBar(day);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
+        updateProgress();
         // Agregar un listener para detectar los cambios en "venceDat"
-        sp_sim.registerOnSharedPreferenceChangeListener(
+        SharedPreferences.OnSharedPreferenceChangeListener listener =
                 new SharedPreferences.OnSharedPreferenceChangeListener() {
-                    @Override
-                    public void onSharedPreferenceChanged(
-                            SharedPreferences sharedPreferences, String key) {
+                    public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
                         if (key.equals("venceDat")) {
-                            // Obtener el nuevo valor de "venceDat"
-                            String day =
-                                    sp_sim.getString("venceDat", "0 días").replace(" días", "");
-                            if (day.matches(".*\\d+.*")) {
-                                updateProgressBar(day);
-                            } else {
-                                binding.progressPaquete.setProgress(100);
-                            }
+                            updateProgress();
                         }
                     }
-                });
+                };
+        balance.registerOnSharedPreferenceChangeListener(listener);
 
         return binding.getRoot();
     }
 
-    private void updateProgressBar(String dias) {
-        int remainingDays = Integer.parseInt(dias);
+    public void updateProgress() {
+        String day = balance.getString("venceDat", "0 días").replace(" días", "");
+        if (isNumeric(day)) {
+            int remainingDays = Integer.parseInt(day);
+            Calendar calendar = Calendar.getInstance();
+            Date currentDate = calendar.getTime();
+            // calcular la fecha de caducidad
+            calendar.add(Calendar.DAY_OF_MONTH, remainingDays);
+            Date expirationDay = calendar.getTime();
+            // calcular la cantidad de dias restantes
+            long daysRemaining =
+                    (expirationDay.getTime() - currentDate.getTime()) / (1000 * 60 * 60 * 24);
+            // calcular el porcentaje
+            int porcentage = (int) ((daysRemaining / (float) totalDias) * 100);
+            binding.progressPaquete.setProgress(porcentage);
+        } else {
+            binding.progressPaquete.setProgress(100);
+        }
+    }
+
+    public boolean isNumeric(String text) {
+        if (text == null || text.isEmpty()) {
+            return false;
+        }
+        for (char c : text.toCharArray()) {
+            if (!Character.isDigit(c)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void updateHora() {
         Calendar calendar = Calendar.getInstance();
-        Date currentDate = calendar.getTime();
-        // calcular la fecha de caducidad
-        calendar.add(Calendar.DAY_OF_MONTH, remainingDays);
-        Date expirationDay = calendar.getTime();
-        // calcular la cantidad de dias restantes
-        long daysRemaining =
-                (expirationDay.getTime() - currentDate.getTime()) / (1000 * 60 * 60 * 24);
-        // calcular el porcentaje
-        int porcentage = (int) ((daysRemaining / (float) totalDias) * 100);
-        binding.progressPaquete.setProgress(porcentage);
+        Date dat = calendar.getTime();
+        SimpleDateFormat datFormat = new SimpleDateFormat("hh:mm a", Locale.getDefault());
+        String hActual = datFormat.format(dat);
+        editor.putString("h", "Actualizado\n" + hActual.toString());
+        editor.apply();
+        binding.textHora.setText("Actualizado\n" + hActual);
     }
 
     private void update_balances() {
@@ -318,6 +334,9 @@ public class BalanceFragment extends Fragment {
                                 editor.putString("venceDiaria", vence_diaria.toString().trim());
                                 editor.apply();
                                 binding.textVenceDiaria.setText(vence_diaria);
+
+                                // progress
+                                updateProgress();
                             }
                         }
 
@@ -346,6 +365,15 @@ public class BalanceFragment extends Fragment {
                                 editor.putString("nacional", nacional.toString().trim());
                                 editor.apply();
                                 binding.textPaqueteNacional.setText(nacional);
+
+                                // promo
+                                String promo =
+                                        message.toString()
+                                                .replaceFirst(
+                                                        "Datos.cu(.*)", "Sin bonos promocionales");
+                                editor.putString("promo", promo.toString().trim());
+                                editor.apply();
+                                binding.textPromociones.setText(promo);
                             }
                         }
 
@@ -370,6 +398,8 @@ public class BalanceFragment extends Fragment {
                                         message.toString()
                                                 .replaceFirst("(.*)dispone de", "")
                                                 .replaceFirst("validos(.*)", "")
+                                                .replaceFirst(
+                                                        "Usted no dispone de SMS.(.*)", "0 SMS")
                                                 .replaceFirst("Usted debe adquirir(.*)", "0 SMS")
                                                 .replace("no activos.", "");
                                 editor.putString("sms", mensajes.toString().trim());
@@ -382,6 +412,7 @@ public class BalanceFragment extends Fragment {
                                                 .replaceFirst(
                                                         "Usted debe adquirir(.*)",
                                                         getString(R.string.vence_dias))
+                                                .replaceFirst("Usted no dispone de SMS.(.*)", "")
                                                 .replaceFirst("Para una nueva(.*)", "")
                                                 .replaceFirst("(.*)validos por", "")
                                                 .replace("1 dia.", "24h")
@@ -550,6 +581,7 @@ public class BalanceFragment extends Fragment {
                                 public void run() {
                                     dialog.dismiss();
                                     updateNotification();
+                                    updateHora();
                                 }
                             },
                             25000);
@@ -595,22 +627,6 @@ public class BalanceFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        String dias = sp_sim.getString("venceDat", "0 días").replace(" días", "");
-        if (dias.matches(".*\\d+.*")) {
-            int remainingDays = Integer.parseInt(dias);
-            Calendar calendar = Calendar.getInstance();
-            Date currentDate = calendar.getTime();
-            // calcular la fecha de caducidad
-            calendar.add(Calendar.DAY_OF_MONTH, remainingDays);
-            Date expirationDay = calendar.getTime();
-            // calcular la cantidad de dias restantes
-            long daysRemaining =
-                    (expirationDay.getTime() - currentDate.getTime()) / (1000 * 60 * 60 * 24);
-            // calcular el porcentaje
-            int porcentage = (int) ((daysRemaining / (float) totalDias) * 100);
-            binding.progressPaquete.setProgress(porcentage);
-        } else {
-            binding.progressPaquete.setProgress(100);
-        }
+        updateProgress();
     }
 }
