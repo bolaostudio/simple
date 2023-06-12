@@ -14,8 +14,8 @@ Es ligera, útil y moderna, además de estar en constante desarrollo es una de l
 - [ ] Login (aún por implementar)
 - [ ] Protección de la aplicación por huella o código.
 - [ ] Widget con sus balances.
-- [ ] Guardado y autocomplrtado de algunos de sus datos para futuro uso.
-- [x] Gestion de planes y paquetes.
+- [ ] Guardado y autocompletado de algunos de sus datos para futuro uso.
+- [x] Gestión de planes y paquetes.
 
 
 
